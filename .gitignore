@@ -1,14 +1,19 @@
+.env
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### VS Code ###
+.vscode/
+
+### Scripts ###
+s5-push-local.sh
+s6-push-deploy.sh
+
 # Compiled class file
 *.class
 
 # Log file
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
 # Package Files #
 *.jar
