@@ -1,0 +1,45 @@
+# Profile default
+server:
+  port: 8080
+spring:
+  application:
+    name: app-pedido
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+  jpa:
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: "update"
+      dialect: "org.hibernate.dialect.MySQL8Dialect"
+
+# Profile para a AWS
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+# Profile local para rodar com o H2
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    # defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update

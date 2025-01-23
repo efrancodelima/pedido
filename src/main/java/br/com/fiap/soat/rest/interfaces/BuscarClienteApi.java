@@ -1,11 +1,10 @@
-package br.com.fiap.techchallenge.externallayer.apis.interfaces;
+package br.com.fiap.soat.rest.interfaces;
 
+import br.com.fiap.soat.entity.ClienteJpa;
+import br.com.fiap.soat.exception.ApplicationException;
+import br.com.fiap.soat.exception.BusinessRuleException;
+import br.com.fiap.soat.exception.ResourceNotFoundException;
 import br.com.fiap.soat.rest.ResponseWrapper;
-import br.com.fiap.techchallenge.applicationlayer.exceptions.ApplicationException;
-import br.com.fiap.techchallenge.applicationlayer.exceptions.ResourceNotFoundException;
-import br.com.fiap.techchallenge.businesslayer.entities.cliente.Cliente;
-import br.com.fiap.techchallenge.businesslayer.exceptions.BusinessRuleException;
-import br.com.fiap.techchallenge.interfacelayer.controllers.dtos.ClienteDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,51 +15,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * Interface da API Cliente.
+ * Interface da API Clientes, rota para buscar o cliente pelo CPF.
  */
 @Tag(name = "Clientes")
-public interface ClienteApi {
+public interface BuscarClienteApi {
 
   /**
-   * Cadastrar cliente.
+   * Buscar cliente pelo cpf.
    *
-   * @param cadastrar O cliente a ser cadastrado.
-   * @return O cliente cadastrado.
-   * @throws ApplicationException Exceção da aplicação lançada pelo método.
-   * @throws BusinessRuleException Exceção de regra de negócio lançada pelo método.
-   */
-  @Operation(summary = "Cadastrar cliente", description = Constantes.DESC_CADASTRAR)
-  @ApiResponses(value = {
-    @ApiResponse(responseCode = "201", description = Constantes.D201, 
-      content = @Content(mediaType = "application/json", examples = @ExampleObject(
-        value = Constantes.E201))),
-
-    @ApiResponse(responseCode = "400", description = Constantes.D400,
-      content = @Content(mediaType = "application/json", examples = @ExampleObject(
-        value = Constantes.E400))),
-    
-    @ApiResponse(responseCode = "422", description = Constantes.D422,
-      content = @Content(mediaType = "application/json", examples = @ExampleObject(
-        value = Constantes.E422))),
-    
-    @ApiResponse(responseCode = "500", description = Constantes.D500,
-      content = @Content(mediaType = "application/json", examples = @ExampleObject(
-        value = Constantes.E500))) })
-
-  @PostMapping(value = "/cadastrar")
-
-  ResponseEntity<Cliente>
-      cadastrarCliente(@RequestBody ClienteDto cadastrar)
-      throws ApplicationException, BusinessRuleException;
-
-  /**
-   * Buscar cliente por cpf.
-   *
-   * @param cpf O CPF do cliente a ser buscado.
+   * @param numeroCpf O CPF do cliente a ser buscado.
    * @return O cliente encontrado para o CPF.
    * @throws ApplicationException Exceção da aplicação lançada pelo método.
    * @throws BusinessRuleException Exceção de regra de negócio lançada pelo método.
@@ -92,22 +57,16 @@ public interface ClienteApi {
   
   @GetMapping(value = "/buscar/{cpf}")
 
-  ResponseEntity<ResponseWrapper<Cliente>>
-      buscarClientePorCpf(@PathVariable("cpf") long cpf)
-      throws ApplicationException, BusinessRuleException, ResourceNotFoundException;
+  ResponseEntity<ResponseWrapper<ClienteJpa>>
+      buscarClientePorCpf(@PathVariable("cpf") long numeroCpf);
 
   /** 
-   * Constantes usadas na interface da API Cliente.
+   * Constantes utilizadas pela interface CadastrarClienteApi.
    */
   final class Constantes {
 
     private Constantes() {}
 
-    public static final String DESC_CADASTRAR = "Para cadastrar um cliente, "
-        + "informe os dados do cliente conforme o schema ClienteDto no final desta página."
-        + "<br>O nome e o email do cliente são opcionais, mas pelo menos um dos dois precisa "
-        + "ser informado.";
-    
     public static final String DESC_BUSCAR = "Para buscar um cliente, informe o CPF "
         + "(somente números, sem pontos e traço).";
 
