@@ -1,4 +1,4 @@
-package br.com.fiap.soat.dto;
+package br.com.fiap.soat.dto.controller;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -1,12 +1,15 @@
 package br.com.fiap.soat.mapper;
 
-import br.com.fiap.soat.dto.PedidoDto;
+import br.com.fiap.soat.dto.controller.PedidoDto;
+import br.com.fiap.soat.dto.service.ProdutoDto;
+import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.entity.ItemPedidoJpa;
 import br.com.fiap.soat.entity.PedidoJpa;
-import br.com.fiap.soat.repository.ClienteRepository;
+import br.com.fiap.soat.exception.NotFoundException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,41 +18,62 @@ import org.springframework.stereotype.Component;
 @Component
 public class PedidoMapper {
 
-  private final ClienteRepository clienteRepository;
-
-  @Autowired
-  private PedidoMapper(ClienteRepository clienteRepository) {
-    this.clienteRepository = clienteRepository;
-  }
+  private PedidoMapper() {}
 
   /**
    * Mapeia um pedido DTO para uma entidade JPA.
    *
    * @param pedidoDto O objeto DTO a ser mapeado.
    * @return A entidade JPA.
+   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
    */
-  public PedidoJpa toEntity(PedidoDto pedidoDto) {
+  public PedidoJpa toEntity(PedidoDto pedidoDto, List<ProdutoDto> produtosDto,
+         ClienteJpa clienteJpa) throws NotFoundException {
 
     var pedidoJpa = new PedidoJpa();
 
-    // Seta o cliente
-    var clienteJpa = clienteRepository.findById(pedidoDto.getCodigoCliente());
-    if (clienteJpa.isPresent()) {
-      pedidoJpa.setClienteJpa(clienteJpa.get());
-    }
+    pedidoJpa.setClienteJpa(clienteJpa);
+    
+    var listaItensJpa = getListaItensJpa(pedidoDto);
+    pedidoJpa.setItensJpa(listaItensJpa);
 
-    // Seta a lista de itens
+    pedidoJpa.setTimestampCheckout(LocalDateTime.now());
+
+    var valorPedido = calcularValorPedido(listaItensJpa, produtosDto);
+    pedidoJpa.setValor(valorPedido);
+
+    return pedidoJpa;
+  }
+
+  private List<ItemPedidoJpa> getListaItensJpa(PedidoDto pedido) {
+
     var listaItensJpa = new ArrayList<ItemPedidoJpa>();
-    for (var itemDto : pedidoDto.getItens()) {
+    for (var itemDto : pedido.getItens()) {
       var itemJpa = ItemPedidoMapper.toEntity(itemDto);
       listaItensJpa.add(itemJpa);
     }
-    pedidoJpa.setItensJpa(listaItensJpa);
+    return listaItensJpa;
+  }
 
-    // Seta o timestamp do chekout
-    pedidoJpa.setTimestampCheckout(LocalDateTime.now());
+  private BigDecimal calcularValorPedido(List<ItemPedidoJpa> itensPedido,
+      List<ProdutoDto> produtos) {
 
-    return pedidoJpa;
+    var valorPedido = BigDecimal.ZERO;
+
+    for (var item : itensPedido) {
+      
+      var produto = produtos.stream()
+          .filter(p -> p.getCodigo().equals(item.getCodigoProduto())).findFirst();
+      
+      if (produto.isPresent()) {
+
+        var valorProduto = produto.get().getPreco();
+        var valorItem = valorProduto.multiply(BigDecimal.valueOf(item.getQuantidade()));
+        valorPedido = valorPedido.add(valorItem);
+      }
+    }
+
+    return valorPedido;
   }
     
 }

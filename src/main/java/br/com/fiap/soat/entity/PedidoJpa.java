@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -42,7 +43,10 @@ public class PedidoJpa implements Serializable {
   @CollectionTable(name = "itens_pedido", joinColumns = @JoinColumn(name = "numero_pedido"))
   private List<ItemPedidoJpa> itensJpa;
 
-  @Column(name = "timestamp_checkout", nullable = true)
+  @Column(name = "timestamp_checkout")
   private LocalDateTime timestampCheckout;
+
+  @Column(name = "valor")
+  private BigDecimal valor;
 
 }

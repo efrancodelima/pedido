@@ -1,4 +1,4 @@
-package br.com.fiap.soat.dto;
+package br.com.fiap.soat.dto.service;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProdutoDto {
+
+  @Schema(description = "Código do produto.", example = "1")
+  public Long codigo;
 
   @Schema(description = "Nome do produto.", example = "X-Monstrão")
   public String nome;

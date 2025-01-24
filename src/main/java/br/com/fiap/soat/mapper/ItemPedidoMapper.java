@@ -1,6 +1,6 @@
 package br.com.fiap.soat.mapper;
 
-import br.com.fiap.soat.dto.ItemPedidoDto;
+import br.com.fiap.soat.dto.controller.ItemPedidoDto;
 import br.com.fiap.soat.entity.ItemPedidoJpa;
 
 /**

@@ -1,7 +1,7 @@
 package br.com.fiap.soat.controller.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.ClienteDto;
+import br.com.fiap.soat.dto.controller.ClienteDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -63,16 +63,13 @@ public interface CadastrarCliente {
     public static final String DESC_CREATED = "Created";
     public static final String EXAMPLE_CREATED = """
         {
-          "status": 201,
-          "body": {
-            "data": {
-              "codigo": 1,
-              "cpf": 11122233396,
-              "nome": "Arthur Conan Doyle",
-              "email": "conanad@gmail.com"
-            },
-            "errorMsg": null
-          }
+          "data": {
+            "codigo": 1,
+            "cpf": 11122233396,
+            "nome": "Arthur Conan Doyle",
+            "email": "conanad@gmail.com"
+          },
+          "errorMsg": null
         }
         """;
     
@@ -80,11 +77,8 @@ public interface CadastrarCliente {
     public static final String DESC_BAD_REQUEST = "Bad Request";
     public static final String EXAMPLE_BAD_REQUEST = """
         {
-          "status": 400,
-          "body": {
-            "data": null,
-            "errorMsg": "O CPF informado é inválido."
-          }
+          "data": null,
+          "errorMsg": "O CPF informado é inválido."
         }
         """;
   }

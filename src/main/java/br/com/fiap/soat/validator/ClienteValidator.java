@@ -1,6 +1,6 @@
 package br.com.fiap.soat.validator;
 
-import br.com.fiap.soat.dto.ClienteDto;
+import br.com.fiap.soat.dto.controller.ClienteDto;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package br.com.fiap.soat.dto;
+package br.com.fiap.soat.dto.service;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

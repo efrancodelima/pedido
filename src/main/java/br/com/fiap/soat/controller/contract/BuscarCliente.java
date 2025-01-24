@@ -69,16 +69,13 @@ public interface BuscarCliente {
     public static final String DESC_OK = "Ok";
     public static final String EXAMPLE_OK = """
         {
-          "status": 200,
-          "body": {
-            "data": {
-              "codigo": 1,
-              "cpf": 11122233396,
-              "nome": "Arthur Conan Doyle",
-              "email": "conanad@gmail.com"
-            },
-            "errorMsg": null
-          }
+          "data": {
+            "codigo": 1,
+            "cpf": 11122233396,
+            "nome": "Arthur Conan Doyle",
+            "email": "conanad@gmail.com"
+          },
+          "errorMsg": null
         }
         """;
 
@@ -86,11 +83,8 @@ public interface BuscarCliente {
     public static final String DESC_BAD_REQUEST = "Bad Request";
     public static final String EXAMPLE_BAD_REQUEST = """
         {
-          "status": 400,
-          "body": {
-            "data": null,
-            "errorMsg": "O CPF informado é inválido."
-          }
+          "data": null,
+          "errorMsg": "O CPF informado é inválido."
         }
         """;
     
@@ -98,11 +92,8 @@ public interface BuscarCliente {
     public static final String DESC_NOT_FOUND = "Not Found";
     public static final String EXAMPLE_NOT_FOUND = """
         {
-          "status": 404,
-          "body": {
-            "data": null,
-            "errorMsg": "Cliente não encontrado."
-          }
+          "data": null,
+          "errorMsg": "Cliente não encontrado."
         }
         """;
   }

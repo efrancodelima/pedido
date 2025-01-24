@@ -13,18 +13,15 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
   /**
-   * Configura a aexibição da API do swagger.annotations/
+   * Retorna um objeto do tipo OpenAPI, que configura a exibição da API do swagger.
    *
    * @return Um objeto do tipo OpenAPI.
    */
   @Bean
-  public OpenAPI customOpenAPI() {
+  public OpenAPI customOpenApi() {
 
     var tagClientes = new Tag().name("Clientes")
         .description("Operações relacionadas a clientes");
-    
-    var tagProdutos = new Tag().name("Produtos")
-        .description("Operações relacionadas a produtos");
     
     var tagPedidos = new Tag().name("Pedidos")
         .description("Operações relacionadas a pedidos");
@@ -34,10 +31,9 @@ public class SwaggerConfig {
         .info(new Info()
             .title("Documentação da API")
             .version("2.0")
-            .description("Documentação da API do Tech Challenge Fase 2"
-                + "<br>FIAP | Pós-tech | Software Architecture"))
+            .description("Documentação da API do microsservico de pedidos (visão do cliente)"
+                + "<br>FIAP | Pós-tech | Software Architecture | Tech Challenge | Fase 4"))
             .addTagsItem(tagClientes)
-            .addTagsItem(tagProdutos)
             .addTagsItem(tagPedidos);
   }
 

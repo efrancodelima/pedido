@@ -2,8 +2,8 @@ package br.com.fiap.soat.controller;
 
 import br.com.fiap.soat.controller.contract.FazerCheckout;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.PedidoDto;
-import br.com.fiap.soat.dto.StatusPedidoDto;
+import br.com.fiap.soat.dto.controller.PedidoDto;
+import br.com.fiap.soat.dto.service.StatusPedidoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.NotFoundException;
@@ -56,9 +56,5 @@ public class FazerCheckoutImpl implements FazerCheckout {
           .body(new ResponseWrapper<>(e.getMessage()));
     }
   }
-
-
-
-  // var StatusPedidoDto = 
     
 }

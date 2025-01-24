@@ -1,8 +1,8 @@
 package br.com.fiap.soat.controller.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.PedidoDto;
-import br.com.fiap.soat.dto.StatusPedidoDto;
+import br.com.fiap.soat.dto.controller.PedidoDto;
+import br.com.fiap.soat.dto.service.StatusPedidoDto;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.NotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -76,15 +76,12 @@ public interface FazerCheckout {
     public static final String DESC_CREATED = "Created";
     public static final String EXAMPLE_CREATED = """
         {
-          "status": 200,
-          "body": {
-            "data": {
-              "numeroPedido": 1,
-              "status": "RECEBIDO",
-              "dataHora": "2025-01-20 15:30:00"
-            },
-            "errorMsg": null
-          }
+          "data": {
+            "numeroPedido": 1,
+            "status": "RECEBIDO",
+            "dataHora": "2025-01-20 15:30:00"
+          },
+          "errorMsg": null
         }
         """;
 
@@ -92,11 +89,8 @@ public interface FazerCheckout {
     public static final String DESC_BAD_REQUEST = "Bad Request";
     public static final String EXAMPLE_BAD_REQUEST = """
         {
-          "status": 400,
-          "body": {
-            "data": null,
-            "errorMsg": "O pedido deve conter, pelo menos, um item."
-          }
+          "data": null,
+          "errorMsg": "O pedido deve conter, pelo menos, um item."
         }
         """;
         
@@ -104,11 +98,8 @@ public interface FazerCheckout {
     public static final String DESC_NOT_FOUND = "Not found";
     public static final String EXAMPLE_NOT_FOUND = """
         {
-          "status": 404,
-          "body": {
-            "data": null,
-            "errorMsg": "Não foi encontrado nenhum produto para o código informado."
-          }
+          "data": null,
+          "errorMsg": "Não foi encontrado nenhum produto para o código informado."
         }
         """;
     
@@ -116,13 +107,10 @@ public interface FazerCheckout {
     public static final String DESC_BAD_GATEWAY = "Bad Gateway";
     public static final String EXAMPLE_BAD_GATEWAY = """
         {
-          "status": 502,
-          "body": {
-            "data": null,
-            "errorMsg": "Erro na comunicação com o sistema de pagamentos."
-          }
+          "data": null,
+          "errorMsg": "Erro na comunicação com o sistema de pagamentos."
         }
         """;
   }
-}
 
+}

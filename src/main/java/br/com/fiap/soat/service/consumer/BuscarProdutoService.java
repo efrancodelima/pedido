@@ -1,7 +1,7 @@
 package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.ProdutoExistsDto;
+import br.com.fiap.soat.dto.service.ProdutoDto;
 import br.com.fiap.soat.service.contract.Service;
 import java.util.List;
 import java.util.Set;
@@ -17,13 +17,13 @@ import org.springframework.web.client.RestTemplate;
  * Service utilizado para se comunicar com o microsserviço de produção.
  */
 @Component
-public class VerificarProdutosExistemService implements
-    Service<Set<Long>, ResponseEntity<ResponseWrapper<List<ProdutoExistsDto>>>> {
+public class BuscarProdutoService implements
+    Service<Set<Long>, ResponseEntity<ResponseWrapper<List<ProdutoDto>>>> {
 
   private final RestTemplate restTemplate;
     
   @Autowired
-  private VerificarProdutosExistemService(RestTemplate restTemplate) {
+  private BuscarProdutoService(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
   
@@ -37,7 +37,7 @@ public class VerificarProdutosExistemService implements
    *     Em caso de falha, a mensagem de erro.
    */
   @Override
-  public ResponseEntity<ResponseWrapper<List<ProdutoExistsDto>>> execute(Set<Long> codigoProdutos) {
+  public ResponseEntity<ResponseWrapper<List<ProdutoDto>>> execute(Set<Long> codigoProdutos) {
     
     String url = "http://localhost:8081/produtos/validar";
 
@@ -45,6 +45,6 @@ public class VerificarProdutosExistemService implements
         url,
         HttpMethod.POST,
         new HttpEntity<>(codigoProdutos),
-        new ParameterizedTypeReference<ResponseWrapper<List<ProdutoExistsDto>>>() {});    
+        new ParameterizedTypeReference<ResponseWrapper<List<ProdutoDto>>>() {});    
   }
 }
