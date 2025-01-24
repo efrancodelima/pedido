@@ -1,8 +1,6 @@
 package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.ProdutoExistsDto;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

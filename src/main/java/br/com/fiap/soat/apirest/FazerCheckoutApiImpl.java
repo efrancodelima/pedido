@@ -1,10 +1,8 @@
 package br.com.fiap.soat.apirest;
 
 import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.ClienteDto;
 import br.com.fiap.soat.dto.PedidoDto;
 import br.com.fiap.soat.dto.StatusPedidoDto;
-import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.NotFoundException;
