@@ -25,21 +25,21 @@ public class PedidoValidator {
    * @throws BadGatewayException Exceção da aplicação lançada durante a validação.
    * @throws NotFoundException Exceção do tipo not found lançada durante a validação.
    */
-  public void validar(PedidoDto pedidoDto) throws BadGatewayException,
-      BadRequestException, NotFoundException {
+  public static void validar(PedidoDto pedidoDto) throws BadRequestException {
 
     validarCodigoCliente(pedidoDto.getCodigoCliente());
     validarItensPedido(pedidoDto.getItens());
   }
 
-  private void validarCodigoCliente(Long codigoCliente) throws BadRequestException {
+  private static void validarCodigoCliente(Long codigoCliente) throws BadRequestException {
 
     if (codigoCliente != null && codigoCliente < 1) {
       throw new BadRequestException(BadRequestMessage.CODIGO_CLIENTE);
     }
   }
 
-  private void validarItensPedido(List<ItemPedidoDto> listaItens) throws BadRequestException {
+  private static void validarItensPedido(List<ItemPedidoDto> listaItens)
+      throws BadRequestException {
 
     if (listaItens == null || listaItens.isEmpty()) {
       throw new BadRequestException(BadRequestMessage.ITEM_MIN);

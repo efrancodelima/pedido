@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Classe ClienteDto.
+ * DTO usado na requisição do controller CadastrarCliente.
  */
 @Data
 @NoArgsConstructor

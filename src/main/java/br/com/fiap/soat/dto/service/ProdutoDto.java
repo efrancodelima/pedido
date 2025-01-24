@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Classe ProdutoDto.
+ * DTO usado na resposta do service BuscarProdutoService.
  */
 @Data
 @NoArgsConstructor

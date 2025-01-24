@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 
 /**
  * Classe PagRequestDto.
+ * DTO usado na requisição do service NovoPagamentoService.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PagRequestDto {
+public class NovoPagamentoDto {
 
   @Schema(description = "Número do pedido].", example = "1")
   public Long numeroPedido;

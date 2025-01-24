@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Classe PedidoDto.
+ * DTO usado na requisição do controller FazerCheckout.
  */
 @Data
 @NoArgsConstructor

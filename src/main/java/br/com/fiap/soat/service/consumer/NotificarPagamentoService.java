@@ -1,7 +1,7 @@
 package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.service.PagRequestDto;
+import br.com.fiap.soat.dto.service.NovoPagamentoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -31,7 +31,7 @@ public class NotificarPagamentoService {
    * @return Em caso de sucesso, um objeto wrapper com campos nulos.
    *      Em caso de falha, a mensagem de erro.
    */
-  public ResponseEntity<ResponseWrapper<Void>> execute(PagRequestDto requisicao) {
+  public ResponseEntity<ResponseWrapper<Void>> execute(NovoPagamentoDto requisicao) {
     
     String url = "http://localhost:8082/novo";
 

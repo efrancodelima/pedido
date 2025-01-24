@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Classe StatusPedidoDto.
+ * DTO usado na resposta do service NotificarProducaoService.
  */
 @Data
 @NoArgsConstructor
