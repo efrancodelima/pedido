@@ -1,4 +1,4 @@
-package br.com.fiap.soat.apirest.wrapper;
+package br.com.fiap.soat.controller.wrapper;
 
 /**
  * Classe para encapsular o objeto de retorno da API,

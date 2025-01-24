@@ -17,6 +17,11 @@ public class CpfValidator {
    * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
    */
   public static void validar(Long numeroCpf) throws BadRequestException {
+
+    // CPF não pode ser nulo
+    if (numeroCpf == null) {
+      throw new BadRequestException(BadRequestMessage.CPF_NULL);
+    }
     
     //  Verifica a quantiodade de dígitos
     if (Long.toString(numeroCpf).length() < 3 || Long.toString(numeroCpf).length() > 11) {

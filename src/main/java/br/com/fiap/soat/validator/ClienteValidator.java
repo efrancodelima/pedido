@@ -21,23 +21,13 @@ public class ClienteValidator {
    */
   public static void validar(ClienteDto clienteDto) throws BadRequestException {
     
-    verificarCamposObrigatorios(clienteDto);
+    if (isNullOrEmpty(clienteDto.getNome()) && isNullOrEmpty(clienteDto.getEmail())) {
+      throw new BadRequestException(BadRequestMessage.NOME_EMAIL_NULL);
+    }
     
     CpfValidator.validar(clienteDto.getCpf());
     validarNome(clienteDto.getNome());
     validarEmail(clienteDto.getEmail());
-  }
-
-  private static void verificarCamposObrigatorios(ClienteDto requisicao)
-      throws BadRequestException {
-
-    if (requisicao.getCpf() == null) {
-      throw new BadRequestException(BadRequestMessage.CPF_NULL);
-    }
-
-    if (isNullOrEmpty(requisicao.getNome()) && isNullOrEmpty(requisicao.getEmail())) {
-      throw new BadRequestException(BadRequestMessage.NOME_EMAIL_NULL);
-    }
   }
 
   private static void validarNome(String nome) throws BadRequestException {

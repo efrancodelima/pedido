@@ -1,13 +1,14 @@
-package br.com.fiap.soat.apirest;
+package br.com.fiap.soat.controller;
 
-import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
+import br.com.fiap.soat.controller.contract.BuscarCliente;
+import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.provider.BuscarClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/clientes")
-public class BuscarClienteApiImpl {
+public class BuscarClienteImpl implements BuscarCliente {
 
   private final BuscarClienteService service;
 
@@ -27,20 +28,13 @@ public class BuscarClienteApiImpl {
    * @param service O service para buscar o cliente.
    */
   @Autowired
-  public BuscarClienteApiImpl(BuscarClienteService service) {
+  public BuscarClienteImpl(BuscarClienteService service) {
     this.service = service;
   }
 
-  /**
-   * Endpoint para buscar o cliente pelo CPF.
-   *
-   * @param numeroCpf O número do CPF do cliente a ser buscado.
-   * @return Um objeto do tipo ResponseEntity contendo o cliente encontrado,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
-  @GetMapping(value = "/buscar/{cpf}")
+  @Override
   public ResponseEntity<ResponseWrapper<ClienteJpa>>
-      buscarCliente(@PathVariable("cpf") Long numeroCpf) {
+      buscarClientePorCpf(@PathVariable("cpf") long numeroCpf) {
 
     try {
       var cliente = service.execute(numeroCpf);
@@ -48,6 +42,10 @@ public class BuscarClienteApiImpl {
 
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body(new ResponseWrapper<>(e.getMessage()));
+    
+    } catch (NotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
     }
   }

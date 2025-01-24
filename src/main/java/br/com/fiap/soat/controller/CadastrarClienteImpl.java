@@ -1,6 +1,7 @@
-package br.com.fiap.soat.apirest;
+package br.com.fiap.soat.controller;
 
-import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
+import br.com.fiap.soat.controller.contract.CadastrarCliente;
+import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.ClienteDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.exception.BadRequestException;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/clientes")
-public class CadastrarClienteApiImpl {
+public class CadastrarClienteImpl implements CadastrarCliente {
 
   private final CadastrarClienteService service;
 
@@ -28,18 +29,11 @@ public class CadastrarClienteApiImpl {
    * @param service O service para cadastrar o cliente.
    */
   @Autowired
-  public CadastrarClienteApiImpl(CadastrarClienteService service) {
+  public CadastrarClienteImpl(CadastrarClienteService service) {
     this.service = service;
   }
 
-  /**
-   * Endpoint para o cadastro de clientes.
-   *
-   * @param clienteDto A requisição com os dados do cliente a ser cadastrado.
-   * @return Um objeto do tipo ResponseEntity contendo o cliente cadastrado,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
-  @PostMapping(value = "/cadastrar")
+  @Override
   public ResponseEntity<ResponseWrapper<ClienteJpa>>
       cadastrarCliente(@RequestBody ClienteDto clienteDto) {
 

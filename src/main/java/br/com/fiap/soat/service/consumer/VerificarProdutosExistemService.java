@@ -1,6 +1,6 @@
 package br.com.fiap.soat.service.consumer;
 
-import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
+import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.ProdutoExistsDto;
 import br.com.fiap.soat.service.contract.Service;
 import java.util.List;

@@ -61,7 +61,7 @@ public class PedidoValidator {
   
       var clienteExiste = clienteRepository.existsById(codigoCliente);
       if (!clienteExiste) {
-        throw new NotFoundException(NotFoundMessage.CLIENTE);
+        throw new NotFoundException(NotFoundMessage.COD_CLIENTE);
       }
     }
   }
@@ -87,7 +87,7 @@ public class PedidoValidator {
 
     for (var item : itensExists) {
       if (!item.isExists()) {
-        throw new NotFoundException(NotFoundMessage.PRODUTO);
+        throw new NotFoundException(NotFoundMessage.COD_PRODUTO);
       }
     }
   }

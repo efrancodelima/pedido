@@ -1,6 +1,7 @@
-package br.com.fiap.soat.apirest;
+package br.com.fiap.soat.controller;
 
-import br.com.fiap.soat.apirest.wrapper.ResponseWrapper;
+import br.com.fiap.soat.controller.contract.FazerCheckout;
+import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.PedidoDto;
 import br.com.fiap.soat.dto.StatusPedidoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
@@ -10,7 +11,6 @@ import br.com.fiap.soat.service.provider.FazerCheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/pedidos")
-public class FazerCheckoutApiImpl {
+public class FazerCheckoutImpl implements FazerCheckout {
 
   // Atributos
   private final FazerCheckoutService service;
@@ -31,18 +31,11 @@ public class FazerCheckoutApiImpl {
    * @param service O service para fazer checkout do pedido.
    */
   @Autowired
-  public FazerCheckoutApiImpl(FazerCheckoutService service) {
+  public FazerCheckoutImpl(FazerCheckoutService service) {
     this.service = service;
   }
 
-  /**
-   * Endpoint para o checkout de pedidos.
-   *
-   * @param pedidoDto O pedido para o checkout.
-   * @return Um objeto do tipo ResponseEntity contendo o status do pedido,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
-  @PostMapping(value = "/checkout")
+  @Override
   public ResponseEntity<ResponseWrapper<StatusPedidoDto>>
       fazerCheckout(@RequestBody PedidoDto pedidoDto) {
 

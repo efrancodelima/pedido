@@ -2,6 +2,8 @@ package br.com.fiap.soat.service.provider;
 
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.NotFoundException;
+import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.ClienteRepository;
 import br.com.fiap.soat.service.contract.Service;
 import br.com.fiap.soat.validator.CpfValidator;
@@ -27,10 +29,15 @@ public class BuscarClienteService implements Service<Long, ClienteJpa> {
   }
 
   @Override
-  public ClienteJpa execute(Long cpf) throws BadRequestException {
+  public ClienteJpa execute(Long cpf) throws BadRequestException, NotFoundException {
     
     CpfValidator.validar(cpf);
-    return repository.findByCpf(cpf);
+    var cliente = repository.findByCpf(cpf);
+
+    if (cliente == null) {
+      throw new NotFoundException(NotFoundMessage.CLIENTE);
+    }
+    return cliente;
   }
   
 }
