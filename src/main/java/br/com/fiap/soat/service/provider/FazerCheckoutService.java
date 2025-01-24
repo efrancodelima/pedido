@@ -13,10 +13,12 @@ import br.com.fiap.soat.service.consumer.NotificarProducaoService;
 import br.com.fiap.soat.validator.PedidoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 /**
  * Service para fazer o checkout do pedido.
  */
+@Component
 public class FazerCheckoutService {
 
   private final PedidoRepository repository;

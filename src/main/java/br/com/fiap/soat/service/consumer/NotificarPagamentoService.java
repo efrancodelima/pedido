@@ -6,11 +6,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * Service utilizado para se comunicar com o microsserviço de produção.
  */
+@Component
 public class NotificarPagamentoService {
 
   private final RestTemplate restTemplate;

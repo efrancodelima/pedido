@@ -8,10 +8,12 @@ import br.com.fiap.soat.repository.ClienteRepository;
 import br.com.fiap.soat.service.contract.Service;
 import br.com.fiap.soat.validator.ClienteValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Service para cadastrar clientes.
  */
+@Component
 public class CadastrarClienteService implements Service<ClienteDto, ClienteJpa> {
 
   private final ClienteRepository repository;

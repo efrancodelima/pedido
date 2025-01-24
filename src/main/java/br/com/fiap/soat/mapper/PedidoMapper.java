@@ -7,10 +7,12 @@ import br.com.fiap.soat.repository.ClienteRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Responsável por mapear um pedido DTO para uma entidade JPA.
  */
+@Component
 public class PedidoMapper {
 
   private final ClienteRepository clienteRepository;

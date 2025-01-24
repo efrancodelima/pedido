@@ -6,10 +6,12 @@ import br.com.fiap.soat.repository.ClienteRepository;
 import br.com.fiap.soat.service.contract.Service;
 import br.com.fiap.soat.validator.CpfValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Service para buscar clientes pelo número do CPF.
  */
+@Component
 public class BuscarClienteService implements Service<Long, ClienteJpa> {
 
   private final ClienteRepository repository;
