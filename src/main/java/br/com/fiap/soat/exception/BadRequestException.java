@@ -1,7 +1,9 @@
 package br.com.fiap.soat.exception;
 
+import br.com.fiap.soat.exception.messages.BadRequestMessage;
+
 /**
- * Exceção customizada para requisições inválidas ao microsserviço.
+ * Exceção customizada para recursos não encontrados na base de dados.
  */
 public class BadRequestException extends Exception {
 
@@ -10,8 +12,8 @@ public class BadRequestException extends Exception {
    *
    * @param msg Mensagem de erro associada à exceção.
    */
-  public BadRequestException(String msg) {
-    super(msg);
+  public BadRequestException(BadRequestMessage msg) {
+    super(msg.getMessage());
   }
 
 }

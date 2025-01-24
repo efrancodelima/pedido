@@ -1,6 +1,7 @@
 package br.com.fiap.soat.validator;
 
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.messages.BadRequestMessage;
 
 /**
  * Responsável por validar o número do CPF recebido na requisição ao microsserviço.
@@ -12,22 +13,22 @@ public class CpfValidator {
   /**
    * Valida o número do CPF.
    *
-   * @param cpf O número a ser validado.
+   * @param numeroCpf O número a ser validado.
    * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
    */
-  public static void validar(Long cpf) throws BadRequestException {
+  public static void validar(Long numeroCpf) throws BadRequestException {
     
     //  Verifica a quantiodade de dígitos
-    if (Long.toString(cpf).length() < 3 || Long.toString(cpf).length() > 11) {
-      throw new BadRequestException("O CPF informado é inválido.");
+    if (Long.toString(numeroCpf).length() < 3 || Long.toString(numeroCpf).length() > 11) {
+      throw new BadRequestException(BadRequestMessage.CPF_INVALIDO);
     }
 
     //  Valida o dígito verificador
-    var numeroSemDv = (int) (cpf / 100);
-    var digitoVerificador = (byte) (cpf % 100);
+    var numeroSemDv = (int) (numeroCpf / 100);
+    var digitoVerificador = (byte) (numeroCpf % 100);
 
     if (digitoVerificador != calcularDigitoCpf(numeroSemDv)) {
-      throw new BadRequestException("O CPF informado é inválido.");
+      throw new BadRequestException(BadRequestMessage.CPF_INVALIDO);
     }
   }
 

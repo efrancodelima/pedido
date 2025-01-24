@@ -2,7 +2,7 @@ package br.com.fiap.soat.validator;
 
 import br.com.fiap.soat.dto.ClienteDto;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.messages2.ClienteExceptions;
+import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -16,64 +16,55 @@ public class ClienteValidator {
   /**
    * Valida um objeto do tipo ClienteDto.
    *
-   * @param requisicao O objeto a ser validado.
+   * @param clienteDto O objeto a ser validado.
    * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
    */
-  public static void validar(ClienteDto requisicao) throws BadRequestException {
+  public static void validar(ClienteDto clienteDto) throws BadRequestException {
     
-    verificarCamposObrigatorios(requisicao);
+    verificarCamposObrigatorios(clienteDto);
     
-    CpfValidator.validar(requisicao.getCpf());
-    validarNome(requisicao.getNome());
-    validarEmail(requisicao.getEmail());
+    CpfValidator.validar(clienteDto.getCpf());
+    validarNome(clienteDto.getNome());
+    validarEmail(clienteDto.getEmail());
   }
 
   private static void verificarCamposObrigatorios(ClienteDto requisicao)
       throws BadRequestException {
 
     if (requisicao.getCpf() == null) {
-      throw new BadRequestException("Informe o CPF do cliente.");
+      throw new BadRequestException(BadRequestMessage.CPF_NULL);
     }
 
-    if (requisicao.getNome() == null && requisicao.getEmail() == null) {
-      throw new BadRequestException("Informe o nome ou o email do cliente.");
+    if (isNullOrEmpty(requisicao.getNome()) && isNullOrEmpty(requisicao.getEmail())) {
+      throw new BadRequestException(BadRequestMessage.NOME_EMAIL_NULL);
     }
   }
 
   private static void validarNome(String nome) throws BadRequestException {
 
-    if (nome != null) {
+    if (!isNullOrEmpty(nome)) {
 
-      if (nome.isEmpty()) {
-        throw new BadRequestException("Informe o nome do cliente.");
-      }
-    
+      // Verifica o limite de caracteres
       if (nome.length() > 50) {
-        throw new BadRequestException("O nome do cliente não pode ter mais de 50 caracteres.");
+        throw new BadRequestException(BadRequestMessage.NOME_MAX);
       }
-        
+      
+      // Verifica as palavras
       var palavras = getListaPalavras(nome, 3);
             
       if (palavras.isEmpty()) {
-        throw new BadRequestException("O nome do cliente deve conter, no mínimo, "
-            + "uma palavra com três ou mais caracteres.");
+        throw new BadRequestException(BadRequestMessage.NOME_INVALIDO);
       }
     }
   }
 
   private static void validarEmail(String email) throws BadRequestException {
 
-    if (email != null) {
-      
-      // Verifica se é string vazia
-      if (email.isEmpty()) {
-        throw new BadRequestException("O e-mail informado é inválido.");
-      }
+    if (!isNullOrEmpty(email)) {
       
       // Verifica o limite de caracteres
       if (email.length() > 40) {
-        throw new BadRequestException("O e-mail não pode ter mais de 40 caracteres.");
-      
+        throw new BadRequestException(BadRequestMessage.EMAIL_MAX);
       }
       
       // Verifica o pattern
@@ -81,7 +72,7 @@ public class ClienteValidator {
       Pattern pattern = Pattern.compile(emailRegexRfc5322);
         
       if (!pattern.matcher(email).matches()) {
-        throw new BadRequestException(ClienteExceptions.EMAIL_INVALIDO.getMensagem());
+        throw new BadRequestException(BadRequestMessage.EMAIL_INVALIDO);
       }
     } 
   }
@@ -100,5 +91,8 @@ public class ClienteValidator {
     return palavrasValidas;
   }
 
-  
+  private static boolean isNullOrEmpty(String str) {
+    return str == null || str.trim().isEmpty();
+  }
+
 }

@@ -1,6 +1,5 @@
 package br.com.fiap.soat.dto;
 
-import br.com.fiap.soat.jpaentity.StatusPedidoEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ public class StatusPedidoDto {
   public Long numeroPedido;
 
   @Schema(description = "Status do pedido.", example = "RECEBIDO")
-  public StatusPedidoEnum status;
+  public String status;
 
   @Schema(description = "Data e hora da última atualização do pedido.",
       example = "2024-09-08 09:10:00")

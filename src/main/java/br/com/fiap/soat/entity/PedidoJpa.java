@@ -3,7 +3,6 @@ package br.com.fiap.soat.entity;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -44,12 +43,6 @@ public class PedidoJpa implements Serializable {
   private List<ItemPedidoJpa> itensJpa;
 
   @Column(name = "timestamp_checkout", nullable = true)
-  private LocalDateTime dataHoraCheckout;
-
-  @Embedded
-  private StatusPagamentoJpa statusPagamento;
-
-  @Embedded
-  private StatusPedidoJpa statusPedido;
+  private LocalDateTime timestampCheckout;
 
 }
