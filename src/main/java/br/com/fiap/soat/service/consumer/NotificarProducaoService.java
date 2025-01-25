@@ -2,6 +2,8 @@ package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.StatusPedidoDto;
+import br.com.fiap.soat.exception.BadGatewayException;
+import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import br.com.fiap.soat.service.contract.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -30,15 +32,22 @@ public class NotificarProducaoService implements
    *
    * @param numeroPedido O número do pedido.
    * @return Em caso de sucesso, o status do pedido. Em caso de falha, a mensagem de erro.
+   * @throws BadGatewayException Exceção lançada caso a comunicação com o serviço externo falhe.
    */
-  public ResponseEntity<ResponseWrapper<StatusPedidoDto>> execute(Long numeroPedido) {
+  public ResponseEntity<ResponseWrapper<StatusPedidoDto>> execute(Long numeroPedido)
+      throws BadGatewayException {
     
-    String url = "http://localhost:8081/produtos/validar";
+    String url = "http://localhost:8082/produtos/validar";
 
-    return restTemplate.exchange(
+    try {
+      return restTemplate.exchange(
         url,
         HttpMethod.POST,
         new HttpEntity<>(numeroPedido),
-        new ParameterizedTypeReference<ResponseWrapper<StatusPedidoDto>>() {});    
+        new ParameterizedTypeReference<ResponseWrapper<StatusPedidoDto>>() {});
+
+    } catch (Exception e) {
+      throw new BadGatewayException(BadGatewayMessage.PRODUCAO);
+    }
   }
 }

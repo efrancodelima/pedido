@@ -2,6 +2,8 @@ package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.ProdutoDto;
+import br.com.fiap.soat.exception.BadGatewayException;
+import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import br.com.fiap.soat.service.contract.Service;
 import java.util.List;
 import java.util.Set;
@@ -35,16 +37,25 @@ public class BuscarProdutoService implements
    * @return Em caso de sucesso, a lista de objetos key-value onde key é o código do produto
    *     e value informa se o produto existe na base de dados.
    *     Em caso de falha, a mensagem de erro.
+   * 
+   * @throws BadGatewayException Exceção lançada caso a comunicação com o serviço externo falhe.
    */
   @Override
-  public ResponseEntity<ResponseWrapper<List<ProdutoDto>>> execute(Set<Long> codigoProdutos) {
+  public ResponseEntity<ResponseWrapper<List<ProdutoDto>>>
+      execute(Set<Long> codigoProdutos) throws BadGatewayException {
     
     String url = "http://localhost:8081/produtos/validar";
 
-    return restTemplate.exchange(
+    try {
+      return restTemplate.exchange(
         url,
         HttpMethod.POST,
         new HttpEntity<>(codigoProdutos),
-        new ParameterizedTypeReference<ResponseWrapper<List<ProdutoDto>>>() {});    
+        new ParameterizedTypeReference<ResponseWrapper<List<ProdutoDto>>>() {});
+
+    } catch (Exception e) {
+      throw new BadGatewayException(BadGatewayMessage.PRODUCAO);
+    }
+    
   }
 }

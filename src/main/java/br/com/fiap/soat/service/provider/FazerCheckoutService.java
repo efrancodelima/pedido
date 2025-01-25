@@ -61,7 +61,7 @@ public class FazerCheckoutService {
     var pedidoJpa = mapper.toEntity(pedidoDto);
 
     pedidoJpa = pedidoRepository.save(pedidoJpa);
-    
+
     notificarSistemaPagamento(pedidoJpa);
     
     return notificarSistemaProducao(pedidoJpa.getNumero());

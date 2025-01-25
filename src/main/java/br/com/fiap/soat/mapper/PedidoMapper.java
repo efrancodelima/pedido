@@ -91,8 +91,8 @@ public class PedidoMapper {
       codigoProdutos.add(item.getCodigoProduto());
     }
 
-    var response = buscarProdutosService.execute(codigoProdutos);
-
+    var response = buscarProdutosService.execute(codigoProdutos);  
+    
     // Verifica a resposta do service
     var responseBody = response.getBody();
 

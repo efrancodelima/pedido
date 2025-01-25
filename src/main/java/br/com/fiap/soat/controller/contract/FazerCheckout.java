@@ -29,6 +29,7 @@ public interface FazerCheckout {
    *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
    */
   @Operation(summary = "Fazer checkout", description = Constantes.DESC_FAZER_CHECKOUT)
+  
   @ApiResponses(value = {
     @ApiResponse(
       responseCode = Constantes.CODE_CREATED,

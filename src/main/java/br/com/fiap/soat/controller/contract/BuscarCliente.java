@@ -27,6 +27,7 @@ public interface BuscarCliente {
    *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
    */
   @Operation(summary = "Buscar cliente por CPF", description = Constantes.DESC_BUSCAR)
+  
   @Parameter(name = "cpf", description = "CPF do cliente", required = true)
   
   @ApiResponses(value = {
