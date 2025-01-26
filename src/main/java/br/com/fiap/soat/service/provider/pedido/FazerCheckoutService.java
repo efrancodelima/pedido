@@ -58,13 +58,13 @@ public class FazerCheckoutService {
 
     PedidoValidator.validar(pedidoDto);
 
-    var pedidoJpa = mapper.toEntity(pedidoDto);
+    var pedido = mapper.toEntity(pedidoDto);
 
-    pedidoJpa = pedidoRepository.save(pedidoJpa);
+    pedido = pedidoRepository.save(pedido);
 
-    notificarSistemaPagamento(pedidoJpa);
+    notificarSistemaPagamento(pedido);
     
-    return notificarSistemaProducao(pedidoJpa.getNumero());
+    return notificarSistemaProducao(pedido.getNumero());
   }
 
   private void notificarSistemaPagamento(PedidoJpa pedido) throws BadGatewayException {

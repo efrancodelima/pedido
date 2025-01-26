@@ -16,11 +16,10 @@ import lombok.NoArgsConstructor;
 public class PedidoDto {
 
   @Schema(description = "Código do cliente (opcional).", example = "1")
-  public Long codigoCliente;
+  private Long codigoCliente;
 
   @Schema(description = "Itens do pedido.",
       example = "[{\"codigoProduto\": 1, \"quantidade\": 2}, {\"codigoProduto\": 2, "
       + "\"quantidade\": 1}]")
-  public List<ItemPedidoDto> itens;
-
+  private List<ItemPedidoDto> itens;
 }

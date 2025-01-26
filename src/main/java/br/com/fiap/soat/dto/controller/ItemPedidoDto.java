@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 public class ItemPedidoDto {
 
   @Schema(description = "Código do produto.", example = "1")
-  public Long codigoProduto;
+  private Long codigoProduto;
 
   @Schema(description = "Quantidade.", example = "1")
-  public Integer quantidade;
+  private Integer quantidade;
 }

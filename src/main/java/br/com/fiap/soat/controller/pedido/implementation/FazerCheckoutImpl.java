@@ -56,5 +56,4 @@ public class FazerCheckoutImpl implements FazerCheckout {
           .body(new ResponseWrapper<>(e.getMessage()));
     }
   }
-    
 }
