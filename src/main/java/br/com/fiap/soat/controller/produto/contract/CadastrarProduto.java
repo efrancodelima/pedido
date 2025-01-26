@@ -42,7 +42,7 @@ public interface CadastrarProduto {
       examples = @ExampleObject(value = Constantes.EXAMPLE_BAD_REQUEST)))
   })
 
-  @PostMapping(value = "/cadastrar")
+  @PostMapping(value = "/cadastrar/")
         
   ResponseEntity<ResponseWrapper<ProdutoJpa>>
       cadastrarProduto(@RequestBody ProdutoDto clienteDto);

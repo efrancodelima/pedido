@@ -7,14 +7,12 @@ import br.com.fiap.soat.entity.PedidoJpa;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.NotFoundException;
-import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import br.com.fiap.soat.mapper.pedido.PedidoMapper;
 import br.com.fiap.soat.repository.PedidoRepository;
 import br.com.fiap.soat.service.consumer.NotificarPagamentoService;
 import br.com.fiap.soat.service.consumer.NotificarProducaoService;
 import br.com.fiap.soat.validator.pedido.PedidoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -63,9 +61,7 @@ public class FazerCheckoutService {
 
     notificarSistemaPagamento(pedido);
     
-    return new StatusPedidoDto();
-
-    // return notificarSistemaProducao(pedido.getNumero());
+    return notificarSistemaProducao(pedido.getNumero());
   }
 
   private void notificarSistemaPagamento(PedidoJpa pedido) throws BadGatewayException {
@@ -78,15 +74,7 @@ public class FazerCheckoutService {
   }
 
   private StatusPedidoDto notificarSistemaProducao(long numeroPedido) throws BadGatewayException {
-
     var response = notificarProducaoService.execute(numeroPedido);
-    var responseBody = response.getBody();
-
-    if (response.getStatusCode() == HttpStatus.OK && responseBody != null) {
-      return responseBody.getData();
-
-    } else {
-      throw new BadGatewayException(BadGatewayMessage.PRODUCAO);
-    }
+    return response.getBody().getData();
   }
 }

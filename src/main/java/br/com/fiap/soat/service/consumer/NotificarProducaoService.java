@@ -3,7 +3,6 @@ package br.com.fiap.soat.service.consumer;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.StatusPedidoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
-import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -35,17 +34,17 @@ public class NotificarProducaoService {
   public ResponseEntity<ResponseWrapper<StatusPedidoDto>> execute(Long numeroPedido)
       throws BadGatewayException {
     
-    String url = "http://localhost:8082/produtos/validar";
+    String url = "http://localhost:8082/pedido/checkout/" + numeroPedido;
 
     try {
       return restTemplate.exchange(
         url,
         HttpMethod.POST,
-        new HttpEntity<>(numeroPedido),
+        new HttpEntity<>(""),
         new ParameterizedTypeReference<ResponseWrapper<StatusPedidoDto>>() {});
 
     } catch (Exception e) {
-      throw new BadGatewayException(BadGatewayMessage.PRODUCAO);
+      throw new BadGatewayException(e.getMessage());
     }
   }
 }

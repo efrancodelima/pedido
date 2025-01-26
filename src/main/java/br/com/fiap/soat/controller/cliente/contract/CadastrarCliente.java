@@ -42,7 +42,7 @@ public interface CadastrarCliente {
       examples = @ExampleObject(value = Constantes.EXAMPLE_BAD_REQUEST)))
   })
 
-  @PostMapping(value = "/cadastrar")
+  @PostMapping(value = "/cadastrar/")
         
   ResponseEntity<ResponseWrapper<ClienteJpa>> cadastrarCliente(@RequestBody ClienteDto clienteDto);
 
