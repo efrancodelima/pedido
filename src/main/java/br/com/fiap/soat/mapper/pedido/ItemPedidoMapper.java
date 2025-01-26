@@ -7,10 +7,12 @@ import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Responsável por mapear um item pedido DTO para uma entidade JPA.
  */
+@Component
 public class ItemPedidoMapper {
 
   private final ProdutoRepository produtoRepository;
