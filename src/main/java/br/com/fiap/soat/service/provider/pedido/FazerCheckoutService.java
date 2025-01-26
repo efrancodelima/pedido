@@ -61,10 +61,10 @@ public class FazerCheckoutService {
 
     pedido = pedidoRepository.save(pedido);
 
+    notificarSistemaPagamento(pedido);
+    
     return new StatusPedidoDto();
 
-    // notificarSistemaPagamento(pedido);
-    
     // return notificarSistemaProducao(pedido.getNumero());
   }
 
@@ -74,10 +74,7 @@ public class FazerCheckoutService {
     requisicao.setNumeroPedido(pedido.getNumero());
     requisicao.setValorPedido(pedido.getValor());
 
-    var responsePag = notificarPagamentoService.execute(requisicao);
-    if (responsePag.getStatusCode() == HttpStatus.NO_CONTENT) {
-      throw new BadGatewayException(BadGatewayMessage.PAGAMENTO);
-    }
+    notificarPagamentoService.execute(requisicao);
   }
 
   private StatusPedidoDto notificarSistemaProducao(long numeroPedido) throws BadGatewayException {

@@ -16,4 +16,12 @@ public class BadGatewayException extends Exception {
     super(msg.getMessage());
   }
 
+  /**
+   * Construtor.
+   *
+   * @param msg Mensagem de erro associada à exceção.
+   */
+  public BadGatewayException(String msg) {
+    super(msg);
+  }
 }

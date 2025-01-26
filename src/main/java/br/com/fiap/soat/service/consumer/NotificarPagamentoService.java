@@ -2,12 +2,14 @@ package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.NovoPagamentoDto;
+import br.com.fiap.soat.dto.service.PagamentoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -35,21 +37,27 @@ public class NotificarPagamentoService {
    * 
    * @throws BadGatewayException Exceção lançada caso a comunicação com o serviço externo falhe.
    */
-  public ResponseEntity<ResponseWrapper<Void>> execute(NovoPagamentoDto requisicao)
+  public void execute(NovoPagamentoDto requisicao)
       throws BadGatewayException {
     
-    String url = "http://localhost:8081/novo";
+    String url = "http://localhost:8081/pagamento/novo/";
+
+    ResponseEntity<ResponseWrapper<PagamentoDto>> response;
 
     try {
-      return restTemplate.exchange(
+      response = restTemplate.exchange(
         url,
         HttpMethod.POST,
         new HttpEntity<>(requisicao),
-        new ParameterizedTypeReference<ResponseWrapper<Void>>() {});
-  
+        new ParameterizedTypeReference<ResponseWrapper<PagamentoDto>>() {});
+
     } catch (Exception e) {
       throw new BadGatewayException(BadGatewayMessage.PAGAMENTO);
     }
-    
+
+    if (response.getStatusCode() != HttpStatus.CREATED) {
+      throw new BadGatewayException("Erro ao criar o pagamento: " 
+          + response.getBody().getErrorMsg());
+    }
   }
 }
