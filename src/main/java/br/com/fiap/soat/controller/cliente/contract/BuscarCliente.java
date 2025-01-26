@@ -28,7 +28,7 @@ public interface BuscarCliente {
    */
   @Operation(summary = "Buscar cliente por CPF", description = Constantes.DESC_BUSCAR)
   
-  @Parameter(name = "cpf", description = "CPF do cliente", required = true)
+  @Parameter(name = "cpf", description = "CPF do cliente", example = "11122233396", required = true)
   
   @ApiResponses(value = {
     @ApiResponse(

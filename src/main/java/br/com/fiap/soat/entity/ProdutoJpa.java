@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cliente")
+@Table(name = "produto")
 public class ProdutoJpa implements Serializable {
 
   private static final long serialVersionUID = 1L;

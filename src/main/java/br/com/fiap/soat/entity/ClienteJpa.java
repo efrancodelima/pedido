@@ -27,7 +27,7 @@ public class ClienteJpa implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long codigo;
 
-  @Column(nullable = false, unique = true)
+  @Column(name = "cpf", nullable = false, unique = true)
   private Long cpf;
 
   @Column(name = "nome", columnDefinition = "VARCHAR(50)")
