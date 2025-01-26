@@ -1,7 +1,6 @@
 package br.com.fiap.soat.validator.produto;
 
 import br.com.fiap.soat.dto.controller.ProdutoDto;
-import br.com.fiap.soat.entity.CategoriaProduto;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.math.BigDecimal;
@@ -28,31 +27,42 @@ public class ProdutoValidator {
     validarNome(produtoDto.getNome());
     validarDescricao(produtoDto.getDescricao());
     validarPreco(produtoDto.getPreco());
-    validarCategoria(produtoDto.getCategoria());
+    CategoriaProdutoValidator.validar(produtoDto.getCategoria());
   }
 
   private static void validarNome(String nome) throws BadRequestException {
 
+    if (nome == null) {
+      throw new BadRequestException(BadRequestMessage.PROD_NOME_NULO);
+    }
+    
     nome = nome.trim();
-
-    if (nome == null || nome.isEmpty()) {
+    
+    if (nome.isEmpty()) {
       throw new BadRequestException(BadRequestMessage.PROD_NOME_NULO);
     
-    } else if (nome.length() < 5) {
-      throw new BadRequestException(BadRequestMessage.PROD_NOME_MIN);
+    }
     
-    } else if (nome.length() > 20) {
+    if (nome.length() < 5) {
+      throw new BadRequestException(BadRequestMessage.PROD_NOME_MIN);
+    }
+    
+    if (nome.length() > 20) {
       throw new BadRequestException(BadRequestMessage.PROD_NOME_MAX);
     }
   }
 
   private static void validarDescricao(String descricao) throws BadRequestException {
+
     if (descricao != null) {
+
+      descricao = descricao.trim();
       
       if (descricao.length() < 20) {
         throw new BadRequestException(BadRequestMessage.PROD_DESC_MIN);
+      }
       
-      } else if (descricao.length() > 150) {
+      if (descricao.length() > 150) {
         throw new BadRequestException(BadRequestMessage.PROD_DESC_MAX);
       }
     }
@@ -62,21 +72,14 @@ public class ProdutoValidator {
     
     if (preco == null) {
       throw new BadRequestException(BadRequestMessage.PROD_PRECO_NULO);
-    
-    } else if (preco.compareTo(BigDecimal.ZERO) <= 0) {
-      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MIN);
-    
-    } else if (preco.compareTo(BigDecimal.valueOf(300)) > 0) {
-      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MAX);
     }
-  }
-
-  private static void validarCategoria(String categoria) throws BadRequestException {
     
-    var categoriaEnum = CategoriaProduto.fromString(categoria.trim());
-
-    if (categoriaEnum == null) {
-      throw new BadRequestException(BadRequestMessage.PROD_CAT_NULA);
+    if (preco.compareTo(BigDecimal.ZERO) <= 0) {
+      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MIN);
+    }
+    
+    if (preco.compareTo(BigDecimal.valueOf(300)) > 0) {
+      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MAX);
     }
   }
 }

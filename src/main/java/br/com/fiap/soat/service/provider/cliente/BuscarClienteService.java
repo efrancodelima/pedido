@@ -41,7 +41,7 @@ public class BuscarClienteService {
     var cliente = repository.findByCpf(cpf);
 
     if (cliente == null) {
-      throw new NotFoundException(NotFoundMessage.CLIENTE);
+      throw new NotFoundException(NotFoundMessage.CPF_CLIENTE);
     }
     return cliente;
   }
