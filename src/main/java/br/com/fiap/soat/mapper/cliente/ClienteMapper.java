@@ -23,9 +23,9 @@ public class ClienteMapper {
     }
 
     ClienteJpa clienteJpa = new ClienteJpa();
-    clienteJpa.setCpf(clienteDto.cpf);
-    clienteJpa.setNome(clienteDto.nome);
-    clienteJpa.setEmail(clienteDto.email);
+    clienteJpa.setCpf(clienteDto.getCpf());
+    clienteJpa.setNome(clienteDto.getNome());
+    clienteJpa.setEmail(clienteDto.getEmail());
 
     return clienteJpa;
   }
