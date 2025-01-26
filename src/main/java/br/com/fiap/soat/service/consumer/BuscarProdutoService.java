@@ -4,7 +4,6 @@ import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.ProdutoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.messages.BadGatewayMessage;
-import br.com.fiap.soat.service.contract.Service;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,7 @@ import org.springframework.web.client.RestTemplate;
  * Service utilizado para se comunicar com o microsserviço de produção.
  */
 @Component
-public class BuscarProdutoService implements
-    Service<Set<Long>, ResponseEntity<ResponseWrapper<List<ProdutoDto>>>> {
+public class BuscarProdutoService {
 
   private final RestTemplate restTemplate;
     
@@ -40,7 +38,6 @@ public class BuscarProdutoService implements
    * 
    * @throws BadGatewayException Exceção lançada caso a comunicação com o serviço externo falhe.
    */
-  @Override
   public ResponseEntity<ResponseWrapper<List<ProdutoDto>>>
       execute(Set<Long> codigoProdutos) throws BadGatewayException {
     

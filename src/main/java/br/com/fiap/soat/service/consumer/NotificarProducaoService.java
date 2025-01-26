@@ -4,7 +4,6 @@ import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.StatusPedidoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.messages.BadGatewayMessage;
-import br.com.fiap.soat.service.contract.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -17,8 +16,7 @@ import org.springframework.web.client.RestTemplate;
  * Service utilizado para se comunicar com o microsserviço de produção.
  */
 @Component
-public class NotificarProducaoService implements
-    Service<Long, ResponseEntity<ResponseWrapper<StatusPedidoDto>>> {
+public class NotificarProducaoService {
 
   private final RestTemplate restTemplate;
     

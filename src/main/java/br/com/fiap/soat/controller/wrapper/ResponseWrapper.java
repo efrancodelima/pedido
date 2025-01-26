@@ -1,7 +1,7 @@
 package br.com.fiap.soat.controller.wrapper;
 
 /**
- * Classe para encapsular o objeto de retorno da API,
+ * Classe para encapsular o retorno dos controllers,
  * no caso da requisição ser bem sucedida, ou o erro, no caso constrário.
  */
 public class ResponseWrapper<T> {
@@ -19,7 +19,7 @@ public class ResponseWrapper<T> {
   }
 
   /**
-   * O construtor da resposta bem sucedida.
+   * O construtor da resposta mal sucedida.
    *
    * @param msgError A mensagem de erro a ser inserida no corpo da resposta.
    */
