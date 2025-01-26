@@ -49,7 +49,7 @@ public interface RemoverProduto {
 
   @DeleteMapping("/remover/{codigo}")
 
-  ResponseEntity<ResponseWrapper<Void>> removerrProduto(@PathVariable long codigo);
+  ResponseEntity<ResponseWrapper<Void>> removerProduto(@PathVariable long codigo);
 
 
   /** 

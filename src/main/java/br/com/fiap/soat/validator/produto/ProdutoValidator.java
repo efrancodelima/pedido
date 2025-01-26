@@ -21,7 +21,7 @@ public class ProdutoValidator {
   public static void validar(ProdutoDto produtoDto) throws BadRequestException {
 
     if (produtoDto == null) {
-      throw new BadRequestException(BadRequestMessage.PROD_NULO);
+      throw new BadRequestException(BadRequestMessage.PROD_NULL);
     }
 
     validarNome(produtoDto.getNome());
@@ -33,13 +33,13 @@ public class ProdutoValidator {
   private static void validarNome(String nome) throws BadRequestException {
 
     if (nome == null) {
-      throw new BadRequestException(BadRequestMessage.PROD_NOME_NULO);
+      throw new BadRequestException(BadRequestMessage.PROD_NOME_NULL);
     }
     
     nome = nome.trim();
     
     if (nome.isEmpty()) {
-      throw new BadRequestException(BadRequestMessage.PROD_NOME_NULO);
+      throw new BadRequestException(BadRequestMessage.PROD_NOME_NULL);
     
     }
     
@@ -71,7 +71,7 @@ public class ProdutoValidator {
   private static void validarPreco(BigDecimal preco) throws BadRequestException {
     
     if (preco == null) {
-      throw new BadRequestException(BadRequestMessage.PROD_PRECO_NULO);
+      throw new BadRequestException(BadRequestMessage.PROD_PRECO_NULL);
     }
     
     if (preco.compareTo(BigDecimal.ZERO) <= 0) {

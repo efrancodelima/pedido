@@ -22,7 +22,7 @@ public class ClienteValidator {
   public static void validar(ClienteDto clienteDto) throws BadRequestException {
     
     if (isNullOrEmpty(clienteDto.getNome()) && isNullOrEmpty(clienteDto.getEmail())) {
-      throw new BadRequestException(BadRequestMessage.NOME_EMAIL_NULL);
+      throw new BadRequestException(BadRequestMessage.CLI_NOME_EMAIL_NULL);
     }
     
     CpfValidator.validar(clienteDto.getCpf());
@@ -36,14 +36,14 @@ public class ClienteValidator {
 
       // Verifica o limite de caracteres
       if (nome.length() > 50) {
-        throw new BadRequestException(BadRequestMessage.NOME_MAX);
+        throw new BadRequestException(BadRequestMessage.CLI_NOME_MAX);
       }
       
       // Verifica as palavras
       var palavras = getListaPalavras(nome, 3);
             
       if (palavras.isEmpty()) {
-        throw new BadRequestException(BadRequestMessage.NOME_INVALIDO);
+        throw new BadRequestException(BadRequestMessage.CLI_NOME_INV);
       }
     }
   }
@@ -54,7 +54,7 @@ public class ClienteValidator {
       
       // Verifica o limite de caracteres
       if (email.length() > 40) {
-        throw new BadRequestException(BadRequestMessage.EMAIL_MAX);
+        throw new BadRequestException(BadRequestMessage.CLI_EMAIL_MAX);
       }
       
       // Verifica o pattern
@@ -62,7 +62,7 @@ public class ClienteValidator {
       Pattern pattern = Pattern.compile(emailRegexRfc5322);
         
       if (!pattern.matcher(email).matches()) {
-        throw new BadRequestException(BadRequestMessage.EMAIL_INVALIDO);
+        throw new BadRequestException(BadRequestMessage.CLI_EMAIL_INV);
       }
     } 
   }

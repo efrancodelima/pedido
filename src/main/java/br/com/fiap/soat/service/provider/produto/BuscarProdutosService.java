@@ -3,7 +3,7 @@ package br.com.fiap.soat.service.provider.produto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.repository.ProdutoRepository;
-import br.com.fiap.soat.validator.produto.CodigoProdutoValidator;
+import br.com.fiap.soat.validator.produto.CodigoValidator;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class BuscarProdutosService {
    */
   public List<ProdutoJpa> execute(List<Long> codigoProdutos) throws BadRequestException {
     
-    CodigoProdutoValidator.validar(codigoProdutos);
+    CodigoValidator.validar(codigoProdutos, ProdutoJpa.class);
 
     List<ProdutoJpa> produtos = new ArrayList<>();
 

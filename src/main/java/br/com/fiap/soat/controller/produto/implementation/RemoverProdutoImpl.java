@@ -31,7 +31,7 @@ public class RemoverProdutoImpl implements RemoverProduto {
   }
 
   @Override
-  public ResponseEntity<ResponseWrapper<Void>> removerrProduto(long codigo) {
+  public ResponseEntity<ResponseWrapper<Void>> removerProduto(long codigo) {
     
     try {
       service.execute(codigo);

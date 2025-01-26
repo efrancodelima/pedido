@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * Interface da API Clientes, rota para buscar o cliente pelo CPF.
  */
-@Tag(name = "Clientes")
+@Tag(name = "Cliente")
 public interface BuscarCliente {
 
   /**

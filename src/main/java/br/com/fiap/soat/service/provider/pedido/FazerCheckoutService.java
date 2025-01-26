@@ -52,7 +52,6 @@ public class FazerCheckoutService {
    * @throws BadGatewayException Exceção do tipo bad gateway lançada pelo método.
    * @throws NotFoundException Exceção do tipo not found lançada pelo método.
    */
-  // @Override
   public StatusPedidoDto execute(PedidoDto pedidoDto)
       throws BadGatewayException, BadRequestException, NotFoundException {
 
@@ -62,9 +61,11 @@ public class FazerCheckoutService {
 
     pedido = pedidoRepository.save(pedido);
 
-    notificarSistemaPagamento(pedido);
+    return new StatusPedidoDto();
+
+    // notificarSistemaPagamento(pedido);
     
-    return notificarSistemaProducao(pedido.getNumero());
+    // return notificarSistemaProducao(pedido.getNumero());
   }
 
   private void notificarSistemaPagamento(PedidoJpa pedido) throws BadGatewayException {

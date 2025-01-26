@@ -34,7 +34,6 @@ public class CadastrarProdutoService {
    * @return O produto cadastrado.
    * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
    */
-  // @Override
   public ProdutoJpa execute(ProdutoDto produtoDto) throws BadRequestException {
 
     ProdutoValidator.validar(produtoDto);

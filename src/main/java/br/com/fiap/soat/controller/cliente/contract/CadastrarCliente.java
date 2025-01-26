@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * Interface da API Clientes, rota para cadastrar cliente.
  */
-@Tag(name = "Clientes")
+@Tag(name = "Cliente")
 public interface CadastrarCliente {
 
   /**
@@ -44,8 +44,7 @@ public interface CadastrarCliente {
 
   @PostMapping(value = "/cadastrar")
         
-  ResponseEntity<ResponseWrapper<ClienteJpa>>
-      cadastrarCliente(@RequestBody ClienteDto clienteDto);
+  ResponseEntity<ResponseWrapper<ClienteJpa>> cadastrarCliente(@RequestBody ClienteDto clienteDto);
 
   /** 
    * Constantes utilizadas pela interface.

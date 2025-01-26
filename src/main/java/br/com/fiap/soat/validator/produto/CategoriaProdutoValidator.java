@@ -20,12 +20,12 @@ public class CategoriaProdutoValidator {
   public static void validar(String categoria) throws BadRequestException {
 
     if (categoria == null || categoria.trim().isEmpty()) {
-      throw new BadRequestException(BadRequestMessage.CAT_NULA);
+      throw new BadRequestException(BadRequestMessage.PROD_CAT_NULL);
     }
 
     var categoriaEnum = CategoriaProduto.fromString(categoria);
     if (categoriaEnum == null) {
-      throw new BadRequestException(BadRequestMessage.CAT_INV);
+      throw new BadRequestException(BadRequestMessage.PROD_CAT_INV);
     }
   }
 }

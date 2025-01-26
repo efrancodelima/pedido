@@ -44,10 +44,10 @@ public class PedidoMapper {
     var pedidoJpa = new PedidoJpa();
 
     var cliente = buscarCliente(pedidoDto.getCodigoCliente());
-    pedidoJpa.setClienteJpa(cliente);
+    pedidoJpa.setCliente(cliente);
     
     var listaItensJpa = getListaItensJpa(pedidoDto);
-    pedidoJpa.setItensJpa(listaItensJpa);
+    pedidoJpa.setItens(listaItensJpa);
 
     pedidoJpa.setTimestampCheckout(LocalDateTime.now());
 

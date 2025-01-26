@@ -20,12 +20,12 @@ public class CpfValidator {
 
     // CPF não pode ser nulo
     if (numeroCpf == null) {
-      throw new BadRequestException(BadRequestMessage.CPF_NULL);
+      throw new BadRequestException(BadRequestMessage.CLI_CPF_NULL);
     }
     
     //  Verifica a quantiodade de dígitos
     if (Long.toString(numeroCpf).length() < 3 || Long.toString(numeroCpf).length() > 11) {
-      throw new BadRequestException(BadRequestMessage.CPF_INVALIDO);
+      throw new BadRequestException(BadRequestMessage.CLI_CPF_INV);
     }
 
     //  Valida o dígito verificador
@@ -33,7 +33,7 @@ public class CpfValidator {
     var digitoVerificador = (byte) (numeroCpf % 100);
 
     if (digitoVerificador != calcularDigitoCpf(numeroSemDv)) {
-      throw new BadRequestException(BadRequestMessage.CPF_INVALIDO);
+      throw new BadRequestException(BadRequestMessage.CLI_CPF_INV);
     }
   }
 

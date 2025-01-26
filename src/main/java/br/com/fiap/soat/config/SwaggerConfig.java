@@ -20,11 +20,14 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI customOpenApi() {
 
-    var tagClientes = new Tag().name("Clientes")
+    var tagClientes = new Tag().name("Cliente")
         .description("Operações relacionadas a clientes");
     
-    var tagPedidos = new Tag().name("Pedidos")
+    var tagPedidos = new Tag().name("Pedido")
         .description("Operações relacionadas a pedidos");
+
+    var tagProdutos = new Tag().name("Produto")
+        .description("Operações relacionadas a produtos");
 
     return new OpenAPI()
 
@@ -34,7 +37,7 @@ public class SwaggerConfig {
             .description("Documentação da API do microsservico de pedidos (visão do cliente)"
                 + "<br>FIAP | Pós-tech | Software Architecture | Tech Challenge | Fase 4"))
             .addTagsItem(tagClientes)
+            .addTagsItem(tagProdutos)
             .addTagsItem(tagPedidos);
   }
-
 }

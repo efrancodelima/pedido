@@ -7,7 +7,7 @@ import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.mapper.produto.ProdutoMapper;
 import br.com.fiap.soat.repository.ProdutoRepository;
-import br.com.fiap.soat.validator.produto.CodigoProdutoValidator;
+import br.com.fiap.soat.validator.produto.CodigoValidator;
 import br.com.fiap.soat.validator.produto.ProdutoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,7 +42,7 @@ public class EditarProdutoService {
   public ProdutoJpa execute(Long codigoProduto, ProdutoDto produtoDto)
       throws BadRequestException, NotFoundException {
 
-    CodigoProdutoValidator.validar(codigoProduto);
+    CodigoValidator.validar(codigoProduto, ProdutoJpa.class);
     ProdutoValidator.validar(produtoDto);
 
     var produtoExiste = repository.existsById(codigoProduto);

@@ -1,10 +1,11 @@
 package br.com.fiap.soat.service.provider.produto;
 
+import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.ProdutoRepository;
-import br.com.fiap.soat.validator.produto.CodigoProdutoValidator;
+import br.com.fiap.soat.validator.produto.CodigoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +37,7 @@ public class RemoverProdutoService {
   public void execute(Long codigoProduto)
       throws BadRequestException, NotFoundException {
 
-    CodigoProdutoValidator.validar(codigoProduto);
+    CodigoValidator.validar(codigoProduto, ProdutoJpa.class);
     
     var produtoExiste = repository.existsById(codigoProduto);
     if (!produtoExiste) {

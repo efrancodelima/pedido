@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * Interface da API Produto, rota para buscar vários produtos.
+ * Interface da API Produto, rota para buscar um ou mais produtos.
  */
 @Tag(name = "Produto")
 public interface BuscarProdutos {
@@ -58,7 +58,7 @@ public interface BuscarProdutos {
 
     private Constantes() {}
 
-    public static final String DESCRICAO = "Para buscar por vários produtos de uma vez, "
+    public static final String DESCRICAO = "Para realizar a busca, "
         + "informe os códigos dos produtos em uma lista. O retorno será uma lista com os produtos "
         + "na mesma ordem em que foram informados os respectivos códigos. Caso algum produto não "
         + "seja encontrado, será retornado null (apenas para aquele produto).";

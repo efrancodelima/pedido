@@ -37,11 +37,11 @@ public class PedidoJpa implements Serializable {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "codigo_cliente", nullable = true)
-  private ClienteJpa clienteJpa;
+  private ClienteJpa cliente;
 
   @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(name = "itens_pedido", joinColumns = @JoinColumn(name = "numero_pedido"))
-  private List<ItemPedidoJpa> itensJpa;
+  private List<ItemPedidoJpa> itens;
 
   @Column(name = "timestamp_checkout")
   private LocalDateTime timestampCheckout;

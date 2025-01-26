@@ -3,8 +3,6 @@ package br.com.fiap.soat.controller.pedido.contract;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.controller.PedidoDto;
 import br.com.fiap.soat.dto.service.StatusPedidoDto;
-import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.NotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -18,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * Interface da API Pedidos, rota para fazer checkout.
  */
-@Tag(name = "Pedidos")
+@Tag(name = "Pedido")
 public interface FazerCheckout {
 
   /**
    * Endpoint para o checkout de pedidos.
    *
    * @param pedidoDto O pedido para o checkout.
-   * @return Um objeto do tipo ResponseEntity contendo o status do pedido,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
+   * @return Um objeto contendo o status do pedido, em caso de sucesso, 
+   *     ou a mensagem de erro, em caso de falha.
    */
-  @Operation(summary = "Fazer checkout", description = Constantes.DESC_FAZER_CHECKOUT)
+  @Operation(summary = "Fazer checkout", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
     @ApiResponse(
@@ -58,9 +56,7 @@ public interface FazerCheckout {
 
   @PostMapping(value = "/checkout/")
 
-  ResponseEntity<ResponseWrapper<StatusPedidoDto>>
-      fazerCheckout(@RequestBody PedidoDto pedidoDto)
-      throws BadRequestException, NotFoundException;
+  ResponseEntity<ResponseWrapper<StatusPedidoDto>> fazerCheckout(@RequestBody PedidoDto pedidoDto);
 
   /** 
    * Constantes usadas pela interface.
@@ -69,7 +65,7 @@ public interface FazerCheckout {
 
     private Constantes() {}
 
-    public static final String DESC_FAZER_CHECKOUT = "Para realizar o checkout do pedido, "
+    public static final String DESCRICAO = "Para realizar o checkout do pedido, "
         + "informe os dados do pedido conforme o schema PedidoDto no final desta página.<br>"
         + "O CPF do cliente é opcional, deixe em branco se não quiser identificar o cliente.";
     
@@ -113,5 +109,4 @@ public interface FazerCheckout {
         }
         """;
   }
-
 }

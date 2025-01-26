@@ -18,8 +18,6 @@ public class PedidoDto {
   @Schema(description = "Código do cliente (opcional).", example = "1")
   private Long codigoCliente;
 
-  @Schema(description = "Itens do pedido.",
-      example = "[{\"codigoProduto\": 1, \"quantidade\": 2}, {\"codigoProduto\": 2, "
-      + "\"quantidade\": 1}]")
+  @Schema(description = "Itens do pedido.", example = "[{\"codigoProduto\": 1, \"quantidade\": 1}]")
   private List<ItemPedidoDto> itens;
 }
