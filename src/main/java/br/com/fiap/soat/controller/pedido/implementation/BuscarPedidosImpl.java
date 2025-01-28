@@ -3,9 +3,7 @@ package br.com.fiap.soat.controller.pedido.implementation;
 import br.com.fiap.soat.controller.pedido.contract.BuscarPedidos;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.entity.PedidoJpa;
-import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.provider.pedido.BuscarPedidosService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pedidos")
 public class BuscarPedidosImpl implements BuscarPedidos {
 
-  // Atributos
   private final BuscarPedidosService service;
 
-  /**
-   * O construtor público da classe.
-   *
-   * @param service O service para fazer checkout do pedido.
-   */
   @Autowired
   public BuscarPedidosImpl(BuscarPedidosService service) {
     this.service = service;
@@ -41,16 +33,8 @@ public class BuscarPedidosImpl implements BuscarPedidos {
       var statusPedidoDto = service.execute(numerosPedidos);
       return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>(statusPedidoDto));
 
-    } catch (BadGatewayException e) {
-      return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    
-    } catch (NotFoundException e) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
     }
   }

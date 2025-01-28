@@ -21,14 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "Produto")
 public interface EditarProduto {
 
-  /** 
-   * Editar produto.
-   *
-   * @param codigo O código do produto a ser editado.
-   * @param produto O produto com as alterações feitas.
-   * @return Um objeto o produto editado, em caso de sucesso,
-   *     ou contendo a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Editar produto", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
@@ -45,13 +37,12 @@ public interface EditarProduto {
       examples = @ExampleObject(value = Constantes.EXAMPLE_BAD_REQUEST)))
   })
   
-  @Parameter(name = "codigo", description = "O código do produto a ser editado", required = true)
-
   @PatchMapping("/editar/{codigo}")
+
+  @Parameter(name = "codigo", description = "O código do produto a ser editado", required = true)
 
   ResponseEntity<ResponseWrapper<ProdutoJpa>>
       editarProduto(@PathVariable long codigo, @RequestBody ProdutoDto produto);
-
 
   /** 
    * Constantes utilizadas pela interface.

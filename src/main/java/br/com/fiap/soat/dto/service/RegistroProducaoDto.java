@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Classe StatusPedidoDto.
  * DTO usado na resposta do service NotificarProducaoService.
  */
 @Data
 @NoArgsConstructor
-public class StatusPedidoDto {
+public class RegistroProducaoDto {
 
   @Schema(description = "Número do pedido.", example = "123")
   public Long numeroPedido;
@@ -18,8 +17,8 @@ public class StatusPedidoDto {
   @Schema(description = "Status do pedido.", example = "RECEBIDO")
   public String status;
 
-  @Schema(description = "Data e hora da última atualização do pedido.",
-      example = "2024-09-08 09:10:00")
-  public String dataHora;
+  @Schema(description = "Timestamp da última atualização do pedido.",
+      example = "2025-01-20 09:10:00")
+  public String timestamp;
 
 }

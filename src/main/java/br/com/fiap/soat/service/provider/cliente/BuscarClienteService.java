@@ -17,24 +17,11 @@ public class BuscarClienteService {
 
   private final ClienteRepository repository;
 
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public BuscarClienteService(ClienteRepository repository) {
     this.repository = repository;
   }
 
-  /**
-   * Busca o cliente pelo CPF.
-   *
-   * @param cpf O CPF do cliente a ser buscado.
-   * @return O cliente encontrado.
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
   public ClienteJpa execute(Long cpf) throws BadRequestException, NotFoundException {
     
     CpfValidator.validar(cpf);
@@ -45,5 +32,4 @@ public class BuscarClienteService {
     }
     return cliente;
   }
-  
 }

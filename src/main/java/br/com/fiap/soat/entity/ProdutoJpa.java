@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Entidade JPA Cliente.
+ * Entidade JPA Produto.
  */
 @Data
 @NoArgsConstructor

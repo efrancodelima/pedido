@@ -10,12 +10,6 @@ public class CpfValidator {
 
   private CpfValidator() {}
 
-  /**
-   * Valida o número do CPF.
-   *
-   * @param numeroCpf O número a ser validado.
-   * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
-   */
   public static void validar(Long numeroCpf) throws BadRequestException {
 
     // CPF não pode ser nulo
@@ -69,5 +63,4 @@ public class CpfValidator {
 
     return (primeiroDigitoVerificador * 10) + segundoDigitoVerificador;
   }
-    
 }

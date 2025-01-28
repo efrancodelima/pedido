@@ -4,10 +4,10 @@ import br.com.fiap.soat.dto.controller.ItemPedidoDto;
 import br.com.fiap.soat.dto.controller.PedidoDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.entity.ProdutoJpa;
-import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.NotFoundException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
+import br.com.fiap.soat.exception.messages.BusinessRulesMessage;
 import br.com.fiap.soat.validator.produto.CodigoValidator;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -20,26 +20,19 @@ public class PedidoValidator {
 
   private PedidoValidator() {}
 
-  /**
-   * valida um objeto do tipo PedidoDto.
-   *
-   * @param pedidoDto O objeto a ser validado.
-   * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
-   * @throws BadGatewayException Exceção da aplicação lançada durante a validação.
-   * @throws NotFoundException Exceção do tipo not found lançada durante a validação.
-   */
-  public static void validar(PedidoDto pedidoDto) throws BadRequestException {
+  
+  public static void validar(PedidoDto pedidoDto)
+      throws BadRequestException, BusinessRulesException {
 
     CodigoValidator.validar(pedidoDto.getCodigoCliente(), ClienteJpa.class);
-
     validarItensPedido(pedidoDto.getItens());
   }
 
   private static void validarItensPedido(List<ItemPedidoDto> listaItens)
-      throws BadRequestException {
+      throws BadRequestException, BusinessRulesException {
 
     if (listaItens == null || listaItens.isEmpty()) {
-      throw new BadRequestException(BadRequestMessage.PED_ITEM_MIN);
+      throw new BusinessRulesException(BusinessRulesMessage.PED_ITEM_MIN);
     }
 
     for (ItemPedidoDto item : listaItens) {

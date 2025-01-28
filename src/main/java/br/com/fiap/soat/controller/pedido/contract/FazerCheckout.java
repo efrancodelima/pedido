@@ -2,7 +2,7 @@ package br.com.fiap.soat.controller.pedido.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.StatusPedidoDto;
+import br.com.fiap.soat.dto.service.RegistroProducaoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -19,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "Pedido")
 public interface FazerCheckout {
 
-  /**
-   * Endpoint para o checkout de pedidos.
-   *
-   * @param pedidoDto O pedido para o checkout.
-   * @return Um objeto contendo o status do pedido, em caso de sucesso, 
-   *     ou a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Fazer checkout", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
@@ -56,7 +49,8 @@ public interface FazerCheckout {
 
   @PostMapping(value = "/checkout/")
 
-  ResponseEntity<ResponseWrapper<StatusPedidoDto>> fazerCheckout(@RequestBody PedidoDto pedidoDto);
+  ResponseEntity<ResponseWrapper<RegistroProducaoDto>>
+      fazerCheckout(@RequestBody PedidoDto pedidoDto);
 
   /** 
    * Constantes usadas pela interface.

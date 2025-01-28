@@ -11,12 +11,6 @@ public class ProdutoMapper {
 
   private ProdutoMapper() {}
 
-  /**
-   * Mapeia um produto DTO para uma entidade JPA.
-   *
-   * @param produtoDto O objeto DTO a ser mapeado.
-   * @return A entidade JPA.
-   */
   public static ProdutoJpa toEntity(ProdutoDto produtoDto) {
     
     if (produtoDto == null) {

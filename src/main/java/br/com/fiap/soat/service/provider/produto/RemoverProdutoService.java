@@ -17,23 +17,11 @@ public class RemoverProdutoService {
 
   private final ProdutoRepository repository;
 
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public RemoverProdutoService(ProdutoRepository repository) {
     this.repository = repository;
   }
 
-  /** 
-   * Remover produto.
-   *
-   * @param codigoProduto O código do produto que será removido.
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
   public void execute(Long codigoProduto)
       throws BadRequestException, NotFoundException {
 

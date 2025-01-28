@@ -1,11 +1,11 @@
 package br.com.fiap.soat.service.provider.pedido;
 
 import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.NovoPagamentoDto;
-import br.com.fiap.soat.dto.service.StatusPedidoDto;
-import br.com.fiap.soat.entity.PedidoJpa;
+import br.com.fiap.soat.dto.service.CriarPagamentoDto;
+import br.com.fiap.soat.dto.service.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.mapper.pedido.PedidoMapper;
 import br.com.fiap.soat.repository.PedidoRepository;
@@ -26,11 +26,6 @@ public class FazerCheckoutService {
   private final NotificarProducaoService notificarProducaoService;
   private final NotificarPagamentoService notificarPagamentoService;
 
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public FazerCheckoutService(PedidoRepository repository, PedidoMapper mapper, 
       NotificarProducaoService producaoService, NotificarPagamentoService pagamentoService) {
@@ -41,17 +36,8 @@ public class FazerCheckoutService {
     this.notificarPagamentoService = pagamentoService;
   }
 
-  /**
-   * Faz o checkout do pedido.
-   *
-   * @param pedidoDto O pedido para o checkout.
-   * @return O status do pedido.
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
-   * @throws BadGatewayException Exceção do tipo bad gateway lançada pelo método.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
-  public StatusPedidoDto execute(PedidoDto pedidoDto)
-      throws BadGatewayException, BadRequestException, NotFoundException {
+  public RegistroProducaoDto execute(PedidoDto pedidoDto)
+      throws BadGatewayException, BadRequestException, BusinessRulesException, NotFoundException {
 
     PedidoValidator.validar(pedidoDto);
 
@@ -59,22 +45,9 @@ public class FazerCheckoutService {
 
     pedido = pedidoRepository.save(pedido);
 
-    notificarSistemaPagamento(pedido);
-    
-    return notificarSistemaProducao(pedido.getNumero());
-  }
-
-  private void notificarSistemaPagamento(PedidoJpa pedido) throws BadGatewayException {
-    
-    var requisicao = new NovoPagamentoDto();
-    requisicao.setNumeroPedido(pedido.getNumero());
-    requisicao.setValorPedido(pedido.getValor());
-
+    var requisicao = new CriarPagamentoDto(pedido.getNumero(), pedido.getValor());
     notificarPagamentoService.execute(requisicao);
-  }
-
-  private StatusPedidoDto notificarSistemaProducao(long numeroPedido) throws BadGatewayException {
-    var response = notificarProducaoService.execute(numeroPedido);
-    return response.getBody().getData();
+    
+    return notificarProducaoService.execute(pedido.getNumero());
   }
 }

@@ -4,7 +4,6 @@ import br.com.fiap.soat.dto.controller.PedidoDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.entity.ItemPedidoJpa;
 import br.com.fiap.soat.entity.PedidoJpa;
-import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.ClienteRepository;
@@ -30,16 +29,8 @@ public class PedidoMapper {
     this.itemPedidoMapper = itemPedidoMapper;
   }
 
-  /**
-   * Mapeia um pedido DTO para uma entidade JPA.
-   *
-   * @param pedidoDto O objeto DTO a ser mapeado.
-   * @return A entidade JPA.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   * @throws BadGatewayException Exceção do tipo bad gateway lançada pelo método.
-   */
   public PedidoJpa toEntity(PedidoDto pedidoDto)
-         throws BadGatewayException, NotFoundException {
+         throws NotFoundException {
 
     var pedidoJpa = new PedidoJpa();
 

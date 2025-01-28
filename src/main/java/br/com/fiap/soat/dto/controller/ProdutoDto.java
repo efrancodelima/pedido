@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Classe ProdutoDto.
+ * DTO usado na requisição dos controllers CadastrarProduto e EditarProduto.
  */
 @Data
 @NoArgsConstructor

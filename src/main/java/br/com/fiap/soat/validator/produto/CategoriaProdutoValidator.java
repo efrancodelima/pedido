@@ -11,12 +11,6 @@ public class CategoriaProdutoValidator {
 
   private CategoriaProdutoValidator() {}
 
-  /**
-   * Valida a categoria do produto.
-   *
-   * @param categoria A categoria a ser validada.
-   * @throws BadRequestException Exceção do tipo bad request lançada pela validação.
-   */
   public static void validar(String categoria) throws BadRequestException {
 
     if (categoria == null || categoria.trim().isEmpty()) {

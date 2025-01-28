@@ -20,13 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "Produto")
 public interface ListarProdutosPorCategoria {
 
-  /**
-   * Listar produtos por categoria.
-   *
-   * @param categoria A categoria dos produtos a serem listados.
-   * @return Um objeto contendo a lista dos produtos encontrados,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Listar produtos por categoria", description = Constantes.DESCRICAO)
 
   @ApiResponses(value = {
@@ -44,10 +37,10 @@ public interface ListarProdutosPorCategoria {
 
   })
 
+  @GetMapping(value = "/listar/{categoria}")
+
   @Parameter(name = "categoria", description = "A categoria dos produtos a serem listados",
       required = true, example = "lanche")
-
-  @GetMapping(value = "/listar/{categoria}")
 
   ResponseEntity<ResponseWrapper<List<ProdutoJpa>>>
       listarProdutosPorCategoria(@PathVariable("categoria") String categoria);

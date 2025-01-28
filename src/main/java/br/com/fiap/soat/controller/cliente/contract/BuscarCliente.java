@@ -19,16 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "Cliente")
 public interface BuscarCliente {
 
-  /**
-   * Endpoint para buscar o cliente pelo CPF.
-   *
-   * @param numeroCpf O número do CPF do cliente a ser buscado.
-   * @return Um objeto do tipo ResponseEntity contendo o cliente encontrado,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
-  @Operation(summary = "Buscar cliente por CPF", description = Constantes.DESC_BUSCAR)
-  
-  @Parameter(name = "cpf", description = "CPF do cliente", example = "11122233396", required = true)
+  @Operation(summary = "Buscar cliente por CPF", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
     @ApiResponse(
@@ -48,11 +39,12 @@ public interface BuscarCliente {
       description = Constantes.DESC_NOT_FOUND,
       content = @Content(mediaType = "application/json",
       examples = @ExampleObject(value = Constantes.EXAMPLE_NOT_FOUND)))
-
   })
   
   @GetMapping(value = "/buscar/{cpf}")
 
+  @Parameter(name = "cpf", description = "CPF do cliente", example = "11122233396", required = true)
+  
   ResponseEntity<ResponseWrapper<ClienteJpa>>
       buscarClientePorCpf(@PathVariable("cpf") long numeroCpf);
 
@@ -63,7 +55,7 @@ public interface BuscarCliente {
 
     private Constantes() {}
 
-    public static final String DESC_BUSCAR = "Para buscar um cliente, informe o CPF "
+    public static final String DESCRICAO = "Para buscar um cliente, informe o CPF "
         + "(somente números, sem pontos e traço).";
     
     public static final String CODE_OK = "200";
@@ -98,5 +90,4 @@ public interface BuscarCliente {
         }
         """;
   }
-
 }

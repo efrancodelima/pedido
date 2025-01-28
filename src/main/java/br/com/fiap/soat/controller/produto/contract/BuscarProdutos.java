@@ -20,13 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "Produto")
 public interface BuscarProdutos {
 
-  /**
-   * Buscar um ou mais produtos.
-   *
-   * @param codigoProdutos Uma lista com os códigos dos produtos a serem buscados.
-   * @return Um objeto contendo a lista dos produtos encontrados,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Buscar produtos pelos códigos", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
@@ -43,11 +36,11 @@ public interface BuscarProdutos {
       examples = @ExampleObject(value = Constantes.EXAMPLE_BAD_REQUEST)))
   })
   
+  @GetMapping(value = "/buscar/{codigos}")
+
   @Parameter(name = "codigos", description = "Uma lista com os códigos dos produtos",
       required = true, example = "1, 2, 3")
   
-  @GetMapping(value = "/buscar/{codigos}")
-
   ResponseEntity<ResponseWrapper<List<ProdutoJpa>>>
       buscarProdutos(@PathVariable("codigos") List<Long> codigoProdutos);
 

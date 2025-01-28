@@ -3,6 +3,7 @@ package br.com.fiap.soat.service.provider.produto;
 import br.com.fiap.soat.dto.controller.ProdutoDto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.mapper.produto.ProdutoMapper;
@@ -20,27 +21,13 @@ public class EditarProdutoService {
 
   private final ProdutoRepository repository;
 
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public EditarProdutoService(ProdutoRepository repository) {
     this.repository = repository;
   }
 
-  /** 
-   * Editar produto.
-   *
-   * @param codigoProduto O código do produto que será editado.
-   * @param produtoDto O produto com as alterações feitas.
-   * @return O produto editado.
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
   public ProdutoJpa execute(Long codigoProduto, ProdutoDto produtoDto)
-      throws BadRequestException, NotFoundException {
+      throws BadRequestException, BusinessRulesException, NotFoundException {
 
     CodigoValidator.validar(codigoProduto, ProdutoJpa.class);
     ProdutoValidator.validar(produtoDto);

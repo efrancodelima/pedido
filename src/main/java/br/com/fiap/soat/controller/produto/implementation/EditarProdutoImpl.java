@@ -5,6 +5,7 @@ import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.controller.ProdutoDto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.provider.produto.EditarProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,14 @@ public class EditarProdutoImpl implements EditarProduto {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
     
+    } catch (BusinessRulesException e) {
+      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+          .body(new ResponseWrapper<>(e.getMessage()));
+    
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
+    
     }
   }
 }

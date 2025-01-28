@@ -18,13 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "Produto")
 public interface RemoverProduto {
 
-  /** 
-   * Remover produto.
-   *
-   * @param codigo O código do produto a ser removido.
-   * @return Um objeto com campos nulos, em caso de sucesso,
-   *     ou contendo a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Remover produto", description = Constantes.DESCRICAO)
   
   @ApiResponses(value = {
@@ -45,9 +38,9 @@ public interface RemoverProduto {
         examples = @ExampleObject(value = Constantes.EXAMPLE_UN_ENTITY)))
   })
   
-  @Parameter(name = "codigo", description = "O código do produto a ser removido", required = true)
-
   @DeleteMapping("/remover/{codigo}")
+
+  @Parameter(name = "codigo", description = "O código do produto a ser removido", required = true)
 
   ResponseEntity<ResponseWrapper<Void>> removerProduto(@PathVariable long codigo);
 

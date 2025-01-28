@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Home {
 
-  /**
-   * Mostra o link para a API web da aplicação.
-   *
-   * @return Uma string contendo o link da API.
-   */
   @GetMapping
   @Hidden
   public String showHome() {

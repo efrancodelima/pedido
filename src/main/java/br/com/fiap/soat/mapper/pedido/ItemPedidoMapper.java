@@ -22,13 +22,6 @@ public class ItemPedidoMapper {
     this.produtoRepository = produtoRepository;
   }
 
-  /**
-   * Mapeia um item pedido DTO para uma entidade JPA.
-   *
-   * @param itemDto O objeto DTO a ser mapeado.
-   * @return A entidade JPA.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
   public ItemPedidoJpa toEntity(ItemPedidoDto itemDto) throws NotFoundException {
 
     var produto = buscarProduto(itemDto.getCodigoProduto());

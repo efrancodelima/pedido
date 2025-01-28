@@ -22,11 +22,6 @@ public class BuscarClienteImpl implements BuscarCliente {
 
   private final BuscarClienteService service;
 
-  /**
-   * O construtor público da classe.
-   *
-   * @param service O service para buscar o cliente.
-   */
   @Autowired
   public BuscarClienteImpl(BuscarClienteService service) {
     this.service = service;

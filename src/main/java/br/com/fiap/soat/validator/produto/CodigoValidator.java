@@ -14,13 +14,6 @@ public class CodigoValidator {
 
   private CodigoValidator() {}
 
-  /**
-   * Valida uma lista de códigos de entidade.
-   *
-   * @param numeros Os códigos da entidade a serem validados.
-   * @param entidadeJpa A classe da entidade.
-   * @throws BadRequestException Exceção do tipo bad request lançada pela validação.
-   */
   public static void validar(List<Long> numeros, Class<?> entidadeJpa)
       throws BadRequestException {
 
@@ -33,13 +26,6 @@ public class CodigoValidator {
     }
   }
 
-  /**
-   * Valida o código do produto.
-   *
-   * @param numero O código do produto a ser validado.
-   * @param entidadeJpa A classe da entidade.
-   * @throws BadRequestException Exceção do tipo bad request lançada pela validação.
-   */
   public static void validar(Long numero, Class<?> entidadeJpa) throws BadRequestException {
 
     var cliente = entidadeJpa.equals(ClienteJpa.class);

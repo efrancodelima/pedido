@@ -33,6 +33,7 @@ public class PedidoJpa implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "numero")
   private Long numero;
 
   @ManyToOne(fetch = FetchType.EAGER)

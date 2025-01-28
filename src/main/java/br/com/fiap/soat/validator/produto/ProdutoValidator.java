@@ -2,7 +2,9 @@ package br.com.fiap.soat.validator.produto;
 
 import br.com.fiap.soat.dto.controller.ProdutoDto;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
+import br.com.fiap.soat.exception.messages.BusinessRulesMessage;
 import java.math.BigDecimal;
 
 /**
@@ -12,13 +14,9 @@ public class ProdutoValidator {
 
   private ProdutoValidator() {}
 
-  /**
-   * Valida um produto (DTO).
-   *
-   * @param produtoDto O objeto a ser validado.
-   * @throws BadRequestException Exceção do tipo bad request lançada durante a validação.
-   */
-  public static void validar(ProdutoDto produtoDto) throws BadRequestException {
+  
+  public static void validar(ProdutoDto produtoDto)
+      throws BadRequestException, BusinessRulesException {
 
     if (produtoDto == null) {
       throw new BadRequestException(BadRequestMessage.PROD_NULL);
@@ -30,7 +28,7 @@ public class ProdutoValidator {
     CategoriaProdutoValidator.validar(produtoDto.getCategoria());
   }
 
-  private static void validarNome(String nome) throws BadRequestException {
+  private static void validarNome(String nome) throws BadRequestException, BusinessRulesException {
 
     if (nome == null) {
       throw new BadRequestException(BadRequestMessage.PROD_NOME_NULL);
@@ -44,42 +42,43 @@ public class ProdutoValidator {
     }
     
     if (nome.length() < 5) {
-      throw new BadRequestException(BadRequestMessage.PROD_NOME_MIN);
+      throw new BusinessRulesException(BusinessRulesMessage.PROD_NOME_MIN);
     }
     
     if (nome.length() > 20) {
-      throw new BadRequestException(BadRequestMessage.PROD_NOME_MAX);
+      throw new BusinessRulesException(BusinessRulesMessage.PROD_NOME_MAX);
     }
   }
 
-  private static void validarDescricao(String descricao) throws BadRequestException {
+  private static void validarDescricao(String descricao) throws BusinessRulesException {
 
     if (descricao != null) {
 
       descricao = descricao.trim();
       
       if (descricao.length() < 20) {
-        throw new BadRequestException(BadRequestMessage.PROD_DESC_MIN);
+        throw new BusinessRulesException(BusinessRulesMessage.PROD_DESC_MIN);
       }
       
       if (descricao.length() > 150) {
-        throw new BadRequestException(BadRequestMessage.PROD_DESC_MAX);
+        throw new BusinessRulesException(BusinessRulesMessage.PROD_DESC_MAX);
       }
     }
   }
 
-  private static void validarPreco(BigDecimal preco) throws BadRequestException {
+  private static void validarPreco(BigDecimal preco)
+      throws BadRequestException, BusinessRulesException {
     
     if (preco == null) {
       throw new BadRequestException(BadRequestMessage.PROD_PRECO_NULL);
     }
     
     if (preco.compareTo(BigDecimal.ZERO) <= 0) {
-      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MIN);
+      throw new BusinessRulesException(BusinessRulesMessage.PROD_PRECO_MIN);
     }
     
     if (preco.compareTo(BigDecimal.valueOf(300)) > 0) {
-      throw new BadRequestException(BadRequestMessage.PROD_PRECO_MAX);
+      throw new BusinessRulesException(BusinessRulesMessage.PROD_PRECO_MAX);
     }
   }
 }

@@ -23,11 +23,6 @@ public class CadastrarClienteImpl implements CadastrarCliente {
 
   private final CadastrarClienteService service;
 
-  /**
-   * O construtor público da classe.
-   *
-   * @param service O service para cadastrar o cliente.
-   */
   @Autowired
   public CadastrarClienteImpl(CadastrarClienteService service) {
     this.service = service;

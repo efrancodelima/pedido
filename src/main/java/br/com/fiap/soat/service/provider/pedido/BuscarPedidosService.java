@@ -1,9 +1,7 @@
 package br.com.fiap.soat.service.provider.pedido;
 
 import br.com.fiap.soat.entity.PedidoJpa;
-import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.repository.PedidoRepository;
 import br.com.fiap.soat.validator.produto.CodigoValidator;
 import java.util.ArrayList;
@@ -19,31 +17,16 @@ public class BuscarPedidosService {
 
   private final PedidoRepository repository;
   
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public BuscarPedidosService(PedidoRepository repository) {
     this.repository = repository;
   }
 
-  /**
-   * Buscar um ou mais pedidos.
-   *
-   * @param numerosPedidos Uma lista com os números dos pedidos a serem buscados.
-   * @return Uma lista com os pedidos encontrados.
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
-   * @throws BadGatewayException Exceção do tipo bad gateway lançada pelo método.
-   * @throws NotFoundException Exceção do tipo not found lançada pelo método.
-   */
-  public List<PedidoJpa> execute(List<Long> numerosPedidos)
-      throws BadGatewayException, BadRequestException, NotFoundException {
+  public List<PedidoJpa> execute(List<Long> numerosPedidos) throws BadRequestException {
 
     CodigoValidator.validar(numerosPedidos, PedidoJpa.class);
 
-    List<PedidoJpa> listaPedidos = new ArrayList<>();
+    var listaPedidos = new ArrayList<PedidoJpa>();
 
     for (var numero : numerosPedidos) {
 

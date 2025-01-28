@@ -19,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Tag(name = "Produto")
 public interface CadastrarProduto {
 
-  /**
-   * Cadastrar produto.
-   *
-   * @param clienteDto A requisição com os dados do produto a ser cadastrado.
-   * @return Um objeto contendo o produto cadastrado, em caso de sucesso,
-   *     ou a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Cadastrar produto", description = Constantes.DESCRICAO)
 
   @ApiResponses(value = {

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Classe ItemPedidoDto.
  * DTO usado na requisição do controller FazerCheckout.
  */
 @Data

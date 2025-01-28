@@ -10,12 +10,6 @@ public class ClienteMapper {
 
   private ClienteMapper() {}
 
-  /**
-   * Mapeia um cliente DTO para uma entidade JPA.
-   *
-   * @param clienteDto O objeto DTO a ser mapeado.
-   * @return A entidade JPA.
-   */
   public static ClienteJpa toEntity(ClienteDto clienteDto) {
     
     if (clienteDto == null) {

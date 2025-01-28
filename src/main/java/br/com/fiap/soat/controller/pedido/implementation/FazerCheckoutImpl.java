@@ -3,9 +3,10 @@ package br.com.fiap.soat.controller.pedido.implementation;
 import br.com.fiap.soat.controller.pedido.contract.FazerCheckout;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.StatusPedidoDto;
+import br.com.fiap.soat.dto.service.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.provider.pedido.FazerCheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pedidos")
 public class FazerCheckoutImpl implements FazerCheckout {
 
-  // Atributos
   private final FazerCheckoutService service;
 
-  /**
-   * O construtor público da classe.
-   *
-   * @param service O service para fazer checkout do pedido.
-   */
   @Autowired
   public FazerCheckoutImpl(FazerCheckoutService service) {
     this.service = service;
   }
 
   @Override
-  public ResponseEntity<ResponseWrapper<StatusPedidoDto>>
+  public ResponseEntity<ResponseWrapper<RegistroProducaoDto>>
       fazerCheckout(@RequestBody PedidoDto pedidoDto) {
 
     try {
@@ -49,6 +44,10 @@ public class FazerCheckoutImpl implements FazerCheckout {
     
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body(new ResponseWrapper<>(e.getMessage()));
+    
+    } catch (BusinessRulesException e) {
+      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
           .body(new ResponseWrapper<>(e.getMessage()));
     
     } catch (NotFoundException e) {
