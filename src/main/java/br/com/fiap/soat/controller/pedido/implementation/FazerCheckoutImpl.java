@@ -2,8 +2,8 @@ package br.com.fiap.soat.controller.pedido.implementation;
 
 import br.com.fiap.soat.controller.pedido.contract.FazerCheckout;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.RegistroProducaoDto;
+import br.com.fiap.soat.dto.controller.request.PedidoDto;
+import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;

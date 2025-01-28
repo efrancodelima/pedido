@@ -1,7 +1,7 @@
 package br.com.fiap.soat.controller.cliente.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.ClienteDto;
+import br.com.fiap.soat.dto.controller.request.ClienteDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

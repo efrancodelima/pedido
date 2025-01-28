@@ -1,8 +1,8 @@
 package br.com.fiap.soat.service.consumer;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.service.CriarPagamentoDto;
-import br.com.fiap.soat.dto.service.PagamentoDto;
+import br.com.fiap.soat.dto.service.request.CriarPagamentoDto;
+import br.com.fiap.soat.dto.service.response.PagamentoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -24,8 +24,7 @@ public class NotificarPagamentoService {
     this.restTemplate = restTemplate;
   }
   
-  public void execute(CriarPagamentoDto requisicao)
-      throws BadGatewayException {
+  public void execute(CriarPagamentoDto requisicao) throws BadGatewayException {
     
     String url = "http://localhost:8081/pagamento/novo/";
 

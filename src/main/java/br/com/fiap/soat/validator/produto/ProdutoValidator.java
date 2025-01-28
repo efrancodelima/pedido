@@ -1,6 +1,6 @@
 package br.com.fiap.soat.validator.produto;
 
-import br.com.fiap.soat.dto.controller.ProdutoDto;
+import br.com.fiap.soat.dto.controller.request.ProdutoDto;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;

@@ -61,18 +61,18 @@ public interface ListarProdutosPorCategoria {
         {
           "data": [
             {
-              "codigo": 1,
-              "nome": "Produto 1",
-              "descricao": "Descrição do Produto 1",
-              "preco": 10.50,
-              "categoria": "Categoria1"
+              "codigo": 21,
+              "nome": "Mousse de baunilha",
+              "descricao": null,
+              "preco": 9.90,
+              "categoria": "SOBREMESA"
             },
             {
-              "codigo": 2,
-              "nome": "Produto 2",
-              "descricao": "Descrição do Produto 2",
-              "preco": 20.75,
-              "categoria": "Categoria2"
+              "codigo": 35,
+              "nome": "Sorvete de brownie",
+              "descricao": null,
+              "preco": 12.90,
+              "categoria": "SOBREMESA"
             }
           ],
           "errorMsg": null

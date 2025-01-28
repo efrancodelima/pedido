@@ -1,6 +1,6 @@
 package br.com.fiap.soat.mapper.pedido;
 
-import br.com.fiap.soat.dto.controller.PedidoDto;
+import br.com.fiap.soat.dto.controller.request.PedidoDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.entity.ItemPedidoJpa;
 import br.com.fiap.soat.entity.PedidoJpa;
@@ -29,8 +29,7 @@ public class PedidoMapper {
     this.itemPedidoMapper = itemPedidoMapper;
   }
 
-  public PedidoJpa toEntity(PedidoDto pedidoDto)
-         throws NotFoundException {
+  public PedidoJpa toEntity(PedidoDto pedidoDto) throws NotFoundException {
 
     var pedidoJpa = new PedidoJpa();
 

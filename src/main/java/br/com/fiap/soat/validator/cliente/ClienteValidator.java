@@ -1,6 +1,6 @@
 package br.com.fiap.soat.validator.cliente;
 
-import br.com.fiap.soat.dto.controller.ClienteDto;
+import br.com.fiap.soat.dto.controller.request.ClienteDto;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;

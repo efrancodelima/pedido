@@ -1,7 +1,7 @@
 package br.com.fiap.soat.validator.pedido;
 
-import br.com.fiap.soat.dto.controller.ItemPedidoDto;
-import br.com.fiap.soat.dto.controller.PedidoDto;
+import br.com.fiap.soat.dto.controller.request.ItemPedidoDto;
+import br.com.fiap.soat.dto.controller.request.PedidoDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;

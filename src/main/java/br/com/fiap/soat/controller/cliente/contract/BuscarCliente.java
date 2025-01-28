@@ -86,7 +86,7 @@ public interface BuscarCliente {
     public static final String EXAMPLE_NOT_FOUND = """
         {
           "data": null,
-          "errorMsg": "Cliente não encontrado."
+          "errorMsg": "Nenhum cliente encontrado para o CPF informado."
         }
         """;
   }

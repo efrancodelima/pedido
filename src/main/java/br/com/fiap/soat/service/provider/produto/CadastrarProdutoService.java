@@ -1,6 +1,6 @@
 package br.com.fiap.soat.service.provider.produto;
 
-import br.com.fiap.soat.dto.controller.ProdutoDto;
+import br.com.fiap.soat.dto.controller.request.ProdutoDto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;

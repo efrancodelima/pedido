@@ -2,7 +2,7 @@ package br.com.fiap.soat.controller.cliente.implementation;
 
 import br.com.fiap.soat.controller.cliente.contract.CadastrarCliente;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.ClienteDto;
+import br.com.fiap.soat.dto.controller.request.ClienteDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;

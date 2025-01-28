@@ -2,7 +2,7 @@ package br.com.fiap.soat.controller.produto.implementation;
 
 import br.com.fiap.soat.controller.produto.contract.EditarProduto;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.ProdutoDto;
+import br.com.fiap.soat.dto.controller.request.ProdutoDto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;

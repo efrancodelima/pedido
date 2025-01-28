@@ -1,6 +1,6 @@
 package br.com.fiap.soat.mapper.cliente;
 
-import br.com.fiap.soat.dto.controller.ClienteDto;
+import br.com.fiap.soat.dto.controller.request.ClienteDto;
 import br.com.fiap.soat.entity.ClienteJpa;
 
 /**

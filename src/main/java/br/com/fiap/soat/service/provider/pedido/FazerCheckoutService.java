@@ -1,8 +1,8 @@
 package br.com.fiap.soat.service.provider.pedido;
 
-import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.CriarPagamentoDto;
-import br.com.fiap.soat.dto.service.RegistroProducaoDto;
+import br.com.fiap.soat.dto.controller.request.PedidoDto;
+import br.com.fiap.soat.dto.service.request.CriarPagamentoDto;
+import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRulesException;

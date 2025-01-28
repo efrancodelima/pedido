@@ -1,4 +1,4 @@
-package br.com.fiap.soat.dto.controller;
+package br.com.fiap.soat.dto.controller.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;

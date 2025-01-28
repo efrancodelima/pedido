@@ -4,6 +4,7 @@ import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.messages.BadGatewayMessage;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -12,28 +13,29 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Service utilizado para notificar o checkout ao microsserviço de produção.
+ * Service utilizado para solicitar ao micorsserviço de produção 
+ * a lista com os itens em produção ordenados pelo status.
  */
 @Component
-public class NotificarProducaoService {
+public class ListarItensProducaoService {
 
   private final RestTemplate restTemplate;
     
   @Autowired
-  private NotificarProducaoService(RestTemplate restTemplate) {
+  private ListarItensProducaoService(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
   
-  public RegistroProducaoDto execute(Long numeroPedido) throws BadGatewayException {
+  public List<RegistroProducaoDto> execute() throws BadGatewayException {
     
-    String url = "http://localhost:8082/producao/receber/" + numeroPedido;
+    String url = "http://localhost:8082/producao/listar/";
 
     try {
       var response = restTemplate.exchange(
           url,
-          HttpMethod.POST,
+          HttpMethod.GET,
           new HttpEntity<>(""),
-          new ParameterizedTypeReference<ResponseWrapper<RegistroProducaoDto>>() {});
+          new ParameterizedTypeReference<ResponseWrapper<List<RegistroProducaoDto>>>() {});
 
       var responseBody = response.getBody();
 

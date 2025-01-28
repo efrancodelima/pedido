@@ -1,6 +1,6 @@
 package br.com.fiap.soat.mapper.pedido;
 
-import br.com.fiap.soat.dto.controller.ItemPedidoDto;
+import br.com.fiap.soat.dto.controller.request.ItemPedidoDto;
 import br.com.fiap.soat.entity.ItemPedidoJpa;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.NotFoundException;

@@ -1,7 +1,7 @@
 package br.com.fiap.soat.controller.produto.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.ProdutoDto;
+import br.com.fiap.soat.dto.controller.request.ProdutoDto;
 import br.com.fiap.soat.entity.ProdutoJpa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

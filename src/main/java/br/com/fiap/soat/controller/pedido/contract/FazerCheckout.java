@@ -1,8 +1,8 @@
 package br.com.fiap.soat.controller.pedido.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.controller.PedidoDto;
-import br.com.fiap.soat.dto.service.RegistroProducaoDto;
+import br.com.fiap.soat.dto.controller.request.PedidoDto;
+import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -90,7 +90,7 @@ public interface FazerCheckout {
     public static final String EXAMPLE_NOT_FOUND = """
         {
           "data": null,
-          "errorMsg": "Não foi encontrado nenhum produto para o código informado."
+          "errorMsg": "Nenhum produto encontrado para o código informado."
         }
         """;
     
