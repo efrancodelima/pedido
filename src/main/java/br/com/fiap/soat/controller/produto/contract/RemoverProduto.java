@@ -72,7 +72,7 @@ public interface RemoverProduto {
     public static final String EXAMPLE_UN_ENTITY = """
         {
           "data": null,
-          "errorMsg": "Nenhum produto encontrado para o código informado."
+          "errorMsg": "Nenhum produto foi encontrado para o código informado."
         }
         """;
   }

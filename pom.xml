@@ -7,10 +7,10 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.1</version>
 	</parent>
-	<groupId>br.com.fiap</groupId>
-	<artifactId>tech-challenge</artifactId>
-	<version>2.1.0</version>
-	<name>tech-challenge</name>
+	<groupId>br.com.fiap.soat</groupId>
+	<artifactId>pedido-app</artifactId>
+	<version>1.0.0</version>
+	<name>Microsserviço de pedido</name>
 	<description>Tech Challenge Fase 4 - Software Architecture</description>
 	<packaging>jar</packaging>
 	<properties>

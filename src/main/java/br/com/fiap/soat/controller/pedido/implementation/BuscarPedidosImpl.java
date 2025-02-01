@@ -31,7 +31,7 @@ public class BuscarPedidosImpl implements BuscarPedidos {
     
     try {
       var statusPedidoDto = service.execute(numerosPedidos);
-      return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>(statusPedidoDto));
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(statusPedidoDto));
 
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)

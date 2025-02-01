@@ -90,7 +90,7 @@ public interface FazerCheckout {
     public static final String EXAMPLE_NOT_FOUND = """
         {
           "data": null,
-          "errorMsg": "Nenhum produto encontrado para o código informado."
+          "errorMsg": "Nenhum produto foi encontrado para o código informado."
         }
         """;
     
