@@ -10,7 +10,7 @@ ENV DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
 WORKDIR /app
 
 ## Copia a aplicação para o diretório de trabalho da imagem
-COPY target/tech-challenge-*.jar .
+COPY target/app-pedido-*.jar .
 
 ## Script para inicializar a aplicação
 COPY s1-run-project.sh .
