@@ -5,10 +5,6 @@ target/
 ### VS Code ###
 .vscode/
 
-### Scripts ###
-s5-push-local.sh
-s6-push-deploy.sh
-
 # Compiled class file
 *.class
 

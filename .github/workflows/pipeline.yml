@@ -51,12 +51,12 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=efrancodelima_application
+          -Dsonar.projectKey=efrancodelima_pedido
 
       - name: Verify analyze result
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./s7-sonar-qube.sh
+        run: ./s2-sonar-qube.sh
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -89,11 +89,11 @@ jobs:
       - name: Tag and push docker image
         env:
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-        run: ./s2-ecr-push.sh
+        run: ./s3-ecr-push.sh
 
       - name: Logout from Amazon ECR
         if: always() && env.LOGIN_ECR == 'true'
         run: docker logout ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Deploy on Amazon ECS
-        run: ./s3-ecs-deploy.sh
+        run: ./s4-ecs-deploy.sh
