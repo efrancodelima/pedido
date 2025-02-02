@@ -171,6 +171,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>5.0.0.4389</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>tech-challenge-3-v${project.version}</finalName>
