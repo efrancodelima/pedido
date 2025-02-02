@@ -77,7 +77,6 @@ class BuscarPedidosImplTest {
   }
 
   private List<PedidoJpa> getListaPedidosJpa() {
-    
     var lista = new ArrayList<PedidoJpa>();
     lista.add(new PedidoJpa());
     return lista;

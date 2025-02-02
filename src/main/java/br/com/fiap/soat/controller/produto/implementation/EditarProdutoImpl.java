@@ -39,20 +39,19 @@ public class EditarProdutoImpl implements EditarProduto {
 
     try {
       var produto = service.execute(codigo, produtoDto);
-      return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>(produto));
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(produto));
 
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    
-    } catch (BusinessRulesException e) {
-      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
           .body(new ResponseWrapper<>(e.getMessage()));
     
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
     
+    } catch (BusinessRulesException e) {
+      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+          .body(new ResponseWrapper<>(e.getMessage()));    
     }
   }
 }

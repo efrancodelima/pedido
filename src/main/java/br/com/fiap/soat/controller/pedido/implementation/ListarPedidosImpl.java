@@ -31,12 +31,11 @@ public class ListarPedidosImpl implements ListarPedidos {
 
     try {
       var lista = service.execute();
-      return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>(lista));
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(lista));
 
     } catch (BadGatewayException e) {
       return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
           .body(new ResponseWrapper<>(e.getMessage()));
-    
     }
   }
 }

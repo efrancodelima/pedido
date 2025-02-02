@@ -46,13 +46,13 @@ public class FazerCheckoutImpl implements FazerCheckout {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
     
-    } catch (BusinessRulesException e) {
-      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
-    }
+    
+    } catch (BusinessRulesException e) {
+      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+          .body(new ResponseWrapper<>(e.getMessage()));
+    } 
   }
 }
