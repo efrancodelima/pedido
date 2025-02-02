@@ -18,12 +18,6 @@ get_sonar_metric() {
   echo "${response}" | jq .component.measures[0].value
 }
 
-remove_non_numeric() {
-  local input_string="$1"
-  local numeric_string=$(echo "$input_string" | tr -cd '[:digit:]')
-  echo "$numeric_string"
-}
-
 remove_double_quotes() {
   local input_string="$1"
   local output_string="${input_string//\"/}"
@@ -177,7 +171,7 @@ fi
 
 # Maintainability rating
 sqale_rating=$(get_sonar_metric "sqale_rating")
-sqale_rating=$(remove_non_numeric $sqale_rating)
+sqale_rating=$(remove_double_quotes $sqale_rating)
 
 if [ "$(echo "$sqale_rating == 1" | bc -l)" -eq 1 ]; then
   echo "- Maintainability rating: A (ok)"
