@@ -52,8 +52,8 @@ class ClienteValidatorTest {
   }
 
   @Test
-  void deveAceitarEmailNuloQuandoNomeNaoNulo() {
-    var cliente = new ClienteDto(11122233396L, "Nome do cliente", null);
+  void deveAceitarEmailVazioQuandoNomeNaoNulo() {
+    var cliente = new ClienteDto(11122233396L, "Nome do cliente", "");
 
     assertDoesNotThrow(() -> {
       ClienteValidator.validar(cliente);

@@ -2,13 +2,9 @@ package br.com.fiap.soat.validator.pedido;
 
 import br.com.fiap.soat.dto.controller.request.ItemPedidoDto;
 import br.com.fiap.soat.dto.controller.request.PedidoDto;
-import br.com.fiap.soat.entity.ClienteJpa;
-import br.com.fiap.soat.entity.ProdutoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
-import br.com.fiap.soat.exception.messages.BusinessRulesMessage;
-import br.com.fiap.soat.validator.produto.CodigoValidator;
+import br.com.fiap.soat.validator.NumberValidator;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -21,31 +17,26 @@ public class PedidoValidator {
   private PedidoValidator() {}
 
   
-  public static void validar(PedidoDto pedidoDto)
-      throws BadRequestException, BusinessRulesException {
+  public static void validar(PedidoDto pedidoDto) throws BadRequestException {
 
-    CodigoValidator.validar(pedidoDto.getCodigoCliente(), ClienteJpa.class);
+    NumberValidator.validar(pedidoDto.getCodigoCliente(), null, BadRequestMessage.CLI_COD_MIN);
     validarItensPedido(pedidoDto.getItens());
   }
 
   private static void validarItensPedido(List<ItemPedidoDto> listaItens)
-      throws BadRequestException, BusinessRulesException {
+      throws BadRequestException {
 
     if (listaItens == null || listaItens.isEmpty()) {
-      throw new BusinessRulesException(BusinessRulesMessage.PED_ITEM_MIN);
+      throw new BadRequestException(BadRequestMessage.PED_ITEM_MIN);
     }
 
     for (ItemPedidoDto item : listaItens) {
 
-      if (item.getQuantidade() == null) {
-        throw new BadRequestException(BadRequestMessage.PED_ITEM_QTDE_NULL);
-      }
+      NumberValidator.validar(item.getQuantidade(),
+          BadRequestMessage.PED_ITEM_QTDE_NULL, BadRequestMessage.PED_ITEM_QTDE_MIN);
 
-      if (item.getQuantidade() < 1) {
-        throw new BadRequestException(BadRequestMessage.PED_ITEM_QTDE_MIN);
-      }
-
-      CodigoValidator.validar(item.getCodigoProduto(), ProdutoJpa.class);
+      NumberValidator.validar(item.getCodigoProduto(),
+          BadRequestMessage.PROD_COD_NULL, BadRequestMessage.PROD_COD_MIN);
     }
   }
 }

@@ -11,6 +11,7 @@ public enum BadRequestMessage {
   CLI_CPF_NULL("Informe o CPF do cliente."),
   CLI_EMAIL_INV("O e-mail informado é inválido."),
   
+  PROD_LIST_COD_NULL("Informe, pelo menos, um código de produto."),
   PROD_NULL("Informe os dados do produto."),
   PROD_COD_NULL("Informe o código do produto."),
   PROD_COD_MIN("O código do produto deve ser igual ou maior que 1."),
@@ -19,10 +20,12 @@ public enum BadRequestMessage {
   PROD_CAT_NULL("Informe a categoria do produto."),
   PROD_CAT_INV("A categoria do produto é inválida."),
 
+  PED_LIST_COD_NULL("Informe, pelo menos, um número de pedido."),
   PED_COD_NULL("Informe o código do produto."),
   PED_COD_MIN("O código do produto deve ser igual ou maior que 1."),
   PED_ITEM_QTDE_NULL("Informe a quantidade do item."),
   PED_ITEM_QTDE_MIN("A quantidade do item deve ser igual ou maior que 1."),
+  PED_ITEM_MIN("O pedido deve conter, pelo menos, um item."),
 
   LIST_COD_EMPTY("Informe, pelo menos, um código para realizar a busca.");
 

@@ -6,7 +6,6 @@ import br.com.fiap.soat.dto.controller.request.PedidoDto;
 import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.provider.pedido.FazerCheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +48,6 @@ public class FazerCheckoutImpl implements FazerCheckout {
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
-    
-    } catch (BusinessRulesException e) {
-      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    } 
+    }
   }
 }

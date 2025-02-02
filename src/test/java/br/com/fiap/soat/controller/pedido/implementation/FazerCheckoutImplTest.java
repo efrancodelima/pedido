@@ -9,10 +9,8 @@ import br.com.fiap.soat.dto.controller.request.PedidoDto;
 import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
-import br.com.fiap.soat.exception.messages.BusinessRulesMessage;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.service.provider.pedido.FazerCheckoutService;
 import java.util.ArrayList;
@@ -104,22 +102,6 @@ class FazerCheckoutImplTest {
 
     // Assert
     assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
-    assertEquals(null, response.getBody().getData());
-    assertEquals(excecao.getMessage(), response.getBody().getErrorMsg());
-  }
-
-  @Test
-  void deveRetornarStatusUnprocessableEntity() throws Exception {
-
-    // Arrange
-    var excecao = new BusinessRulesException(BusinessRulesMessage.PED_ITEM_MIN);
-    when(serviceMock.execute(any())).thenThrow(excecao);
-
-    // Act
-    var response = controller.fazerCheckout(getRequisicao());
-
-    // Assert
-    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY.value(), response.getStatusCode().value());
     assertEquals(null, response.getBody().getData());
     assertEquals(excecao.getMessage(), response.getBody().getErrorMsg());
   }

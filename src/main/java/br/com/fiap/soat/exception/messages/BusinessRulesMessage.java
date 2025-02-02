@@ -17,9 +17,7 @@ public enum BusinessRulesMessage {
   PROD_DESC_MIN("A descrição do produto precisa ter, no mínimo, 20 caracteres."),
   PROD_DESC_MAX("A descrição do produto não pode ter mais de 150 caracteres."),
   PROD_PRECO_MIN("O preço do produto deve ser maior que zero."),
-  PROD_PRECO_MAX("O preço do produto não pode ser maior que R$ 300,00."),
-  
-  PED_ITEM_MIN("O pedido deve conter, pelo menos, um item.");
+  PROD_PRECO_MAX("O preço do produto não pode ser maior que R$ 300,00.");
 
   private String mensagem;
 

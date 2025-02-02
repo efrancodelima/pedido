@@ -2,8 +2,9 @@ package br.com.fiap.soat.service.provider.pedido;
 
 import br.com.fiap.soat.entity.PedidoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import br.com.fiap.soat.repository.PedidoRepository;
-import br.com.fiap.soat.validator.produto.CodigoValidator;
+import br.com.fiap.soat.validator.NumberValidator;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class BuscarPedidosService {
 
   public List<PedidoJpa> execute(List<Long> numerosPedidos) throws BadRequestException {
 
-    CodigoValidator.validar(numerosPedidos, PedidoJpa.class);
+    NumberValidator.validar(numerosPedidos, BadRequestMessage.PED_LIST_COD_NULL,
+        BadRequestMessage.PED_COD_NULL, BadRequestMessage.PED_COD_MIN);
 
     var listaPedidos = new ArrayList<PedidoJpa>();
 

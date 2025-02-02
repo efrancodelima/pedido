@@ -12,10 +12,6 @@ public class ClienteMapper {
 
   public static ClienteJpa toEntity(ClienteDto clienteDto) {
     
-    if (clienteDto == null) {
-      return null;
-    }
-
     ClienteJpa clienteJpa = new ClienteJpa();
     clienteJpa.setCpf(clienteDto.getCpf());
     clienteJpa.setNome(clienteDto.getNome());

@@ -13,10 +13,6 @@ public class ProdutoMapper {
 
   public static ProdutoJpa toEntity(ProdutoDto produtoDto) {
     
-    if (produtoDto == null) {
-      return null;
-    }
-
     var produtoJpa =  new ProdutoJpa();
 
     produtoJpa.setNome(produtoDto.getNome());

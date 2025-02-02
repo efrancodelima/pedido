@@ -5,7 +5,6 @@ import br.com.fiap.soat.dto.service.request.CriarPagamentoDto;
 import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRulesException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.mapper.pedido.PedidoMapper;
 import br.com.fiap.soat.repository.PedidoRepository;
@@ -37,7 +36,7 @@ public class FazerCheckoutService {
   }
 
   public RegistroProducaoDto execute(PedidoDto pedidoDto)
-      throws BadGatewayException, BadRequestException, BusinessRulesException, NotFoundException {
+      throws BadGatewayException, BadRequestException, NotFoundException {
 
     PedidoValidator.validar(pedidoDto);
 

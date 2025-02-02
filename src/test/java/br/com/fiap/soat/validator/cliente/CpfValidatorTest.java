@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,6 +18,8 @@ class CpfValidatorTest {
   void deveValidarUmNumeroCpfComSucesso() {
     assertDoesNotThrow(() -> {
       CpfValidator.validar(11122233396L);
+      CpfValidator.validar(12345678062L);
+      CpfValidator.validar(39053373802L);
     });
   }
   
@@ -30,7 +31,6 @@ class CpfValidatorTest {
     assertEquals(BadRequestMessage.CLI_CPF_NULL.getMessage(), excecao.getMessage());
   }
 
-  @DisplayName("Deve lançar exceção para CPFs inválidos")
   @ParameterizedTest(name = "{index} - CPF: {0}")
   @MethodSource("cpfInvalidoProvider")
   void deveLancarExcecaoParaCpfInvalido(long cpfInvalido, String descricao) {
