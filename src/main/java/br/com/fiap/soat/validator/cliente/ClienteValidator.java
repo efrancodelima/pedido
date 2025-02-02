@@ -17,6 +17,10 @@ public class ClienteValidator {
 
   public static void validar(ClienteDto clienteDto)
       throws BadRequestException, BusinessRulesException {
+
+    if (clienteDto == null) {
+      throw new BadRequestException(BadRequestMessage.CLI_NULL);
+    }
     
     if (isNullOrEmpty(clienteDto.getNome()) && isNullOrEmpty(clienteDto.getEmail())) {
       throw new BusinessRulesException(BusinessRulesMessage.CLI_NOME_EMAIL_NULL);

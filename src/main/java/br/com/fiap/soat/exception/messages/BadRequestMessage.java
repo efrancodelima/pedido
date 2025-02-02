@@ -5,6 +5,7 @@ package br.com.fiap.soat.exception.messages;
  */
 public enum BadRequestMessage {
     
+  CLI_NULL("Informe os dados do cliente."),
   CLI_COD_MIN("O código do cliente deve ser igual ou maior que 1."),
   CLI_CPF_INV("O CPF informado é inválido."),
   CLI_CPF_NULL("Informe o CPF do cliente."),

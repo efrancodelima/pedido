@@ -17,7 +17,7 @@ public class CpfValidator {
       throw new BadRequestException(BadRequestMessage.CLI_CPF_NULL);
     }
     
-    //  Verifica a quantiodade de dígitos
+    //  Verifica a quantidade de dígitos
     if (Long.toString(numeroCpf).length() < 3 || Long.toString(numeroCpf).length() > 11) {
       throw new BadRequestException(BadRequestMessage.CLI_CPF_INV);
     }
