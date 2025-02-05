@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para buscar um cliente pelo CPF.
  */
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class BuscarProdutosImpl implements BuscarProdutos {
 
   private final BuscarProdutosService service;

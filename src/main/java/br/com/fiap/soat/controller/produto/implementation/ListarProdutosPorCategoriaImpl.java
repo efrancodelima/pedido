@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para listar produtos por categoria.
  */
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ListarProdutosPorCategoriaImpl implements ListarProdutosPorCategoria {
 
   private final ListarProdutosPorCategoriaService service;

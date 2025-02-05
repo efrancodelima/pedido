@@ -23,17 +23,17 @@ spring:
     activate:
       on-profile: dev
 
-# Profile local para rodar com o H2
+# Profile para rodar os testes
 ---
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: test
   datasource:
     url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
     username: ${H2_USERNAME}
     password: ${H2_PASSWORD}
+    driverClassName: org.h2.Driver
   h2:
     console:
       enabled: true

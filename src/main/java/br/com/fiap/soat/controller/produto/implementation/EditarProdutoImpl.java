@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para cadastro de clientes.
  */
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class EditarProdutoImpl implements EditarProduto {
 
   private final EditarProdutoService service;

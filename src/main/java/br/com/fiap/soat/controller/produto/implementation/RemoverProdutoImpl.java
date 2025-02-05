@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para remover produto.
  */
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class RemoverProdutoImpl implements RemoverProduto {
 
   private final RemoverProdutoService service;

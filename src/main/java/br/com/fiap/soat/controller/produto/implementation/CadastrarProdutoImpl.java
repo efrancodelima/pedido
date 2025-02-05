@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para cadastro de clientes.
  */
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class CadastrarProdutoImpl implements CadastrarProduto {
 
   private final CadastrarProdutoService service;
