@@ -1,5 +1,5 @@
 -- Tabela cliente
-TRUNCATE TABLE cliente;
+DELETE FROM cliente;
 
 INSERT INTO
     cliente (cpf, nome, email)
@@ -11,7 +11,7 @@ VALUES
     (12345678909, 'João Pedro da Silva', 'joao_silva@gmail.com');
 
 -- Tabela produto
-TRUNCATE TABLE produto;
+DELETE FROM produto;
 
 INSERT INTO
     produto (nome, descricao, preco, categoria)
@@ -37,7 +37,7 @@ VALUES
     ('Pudim', 'Pudim de leite condensado', 4.50, 'SOBREMESA');
 
 -- Tabela pedido
-TRUNCATE TABLE pedido;
+DELETE FROM pedido;
 
 INSERT INTO 
     pedido (codigo_cliente, timestamp_checkout)
