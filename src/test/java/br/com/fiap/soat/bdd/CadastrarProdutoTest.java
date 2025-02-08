@@ -54,6 +54,6 @@ public class CadastrarProdutoTest {
     assertEquals(request.getPreco().toString(), preco);
     
     var categoria = responseBody.get("data").get("categoria").asText();
-    assertEquals(request.getCategoria().toString(), categoria);
+    assertEquals(request.getCategoria(), categoria);
   }
 }
