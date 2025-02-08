@@ -38,7 +38,7 @@ jobs:
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
           JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
-        run: mvn clean install
+        run: mvn clean install -DskipTests
 
       - name: Run tests
         env:
