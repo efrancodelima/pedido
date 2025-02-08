@@ -34,12 +34,9 @@ jobs:
           H2_PASSWORD: password
         run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
-      - name: Build with Maven
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
-        run: mvn clean install -DskipTests
-
+      - name: Wait for application
+        run: ./s6-wait-for-app.sh
+        
       - name: Run tests
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
@@ -63,6 +60,12 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./s2-sonar-qube.sh
+
+      - name: Build with Maven
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
+        run: mvn clean install -DskipTests
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
