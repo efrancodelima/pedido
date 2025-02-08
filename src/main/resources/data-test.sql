@@ -1,6 +1,4 @@
 -- Tabela cliente
-DELETE FROM cliente;
-
 INSERT INTO
     cliente (cpf, nome, email)
 VALUES 
@@ -11,8 +9,6 @@ VALUES
     (12345678909, 'João Pedro da Silva', 'joao_silva@gmail.com');
 
 -- Tabela produto
-DELETE FROM produto;
-
 INSERT INTO
     produto (nome, descricao, preco, categoria)
 VALUES
@@ -37,8 +33,6 @@ VALUES
     ('Pudim', 'Pudim de leite condensado', 4.50, 'SOBREMESA');
 
 -- Tabela pedido
-DELETE FROM pedido;
-
 INSERT INTO 
     pedido (codigo_cliente, timestamp_checkout)
 VALUES
