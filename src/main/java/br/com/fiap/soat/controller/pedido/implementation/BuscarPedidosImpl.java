@@ -30,8 +30,8 @@ public class BuscarPedidosImpl implements BuscarPedidos {
   public ResponseEntity<ResponseWrapper<List<PedidoJpa>>> buscarPedidos(List<Long> numerosPedidos) {
     
     try {
-      var statusPedidoDto = service.execute(numerosPedidos);
-      return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(statusPedidoDto));
+      var pedidos = service.execute(numerosPedidos);
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(pedidos));
 
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)

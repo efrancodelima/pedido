@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS pedido (
     numero BIGINT AUTO_INCREMENT PRIMARY KEY,
     codigo_cliente BIGINT,
     timestamp_checkout TIMESTAMP,
+    valor DECIMAL(5,2) NOT NULL,
     FOREIGN KEY (codigo_cliente) REFERENCES cliente(codigo)
 );
 

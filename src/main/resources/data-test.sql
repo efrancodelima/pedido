@@ -34,25 +34,12 @@ VALUES
 
 -- Tabela pedido
 INSERT INTO 
-    pedido (codigo_cliente, timestamp_checkout)
+    pedido (codigo_cliente, timestamp_checkout, valor)
 VALUES
-    (1, '2025-01-22 13:00:00'),
-    (2, '2025-01-22 13:01:00'),
-    (3, '2025-01-22 13:02:00'),
-    (4, '2025-01-22 13:03:00'),
-    (5, '2025-01-22 13:04:00');
+    (1, '2025-01-22 13:00:00', 11);
 
 -- Tabela itens_pedido
 INSERT INTO
     itens_pedido (numero_pedido, codigo_produto, quantidade)
 VALUES
-    (1, 1, 2),
-    (1, 2, 1),
-    (2, 3, 1),
-    (2, 4, 2),
-    (3, 5, 1),
-    (3, 6, 3),
-    (4, 7, 2),
-    (4, 8, 1),
-    (5, 9, 2),
-    (5, 10, 1);
+    (1, 1, 2);

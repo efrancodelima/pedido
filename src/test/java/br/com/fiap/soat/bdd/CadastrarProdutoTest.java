@@ -1,64 +1,59 @@
 package br.com.fiap.soat.bdd;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import br.com.fiap.soat.dto.controller.request.ProdutoDto;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 import io.restassured.response.Response;
 import java.math.BigDecimal;
-import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 public class CadastrarProdutoTest {
 
-  private ProdutoDto requisicao;
-  private Response resposta;
+  private ProdutoDto request;
+  private Response response;
   private final String url = "http://localhost:8080/produtos/cadastrar/";
 
-  @Given("que existe um produto a ser cadastrado")
+  @Dado("que existe um produto a ser cadastrado")
   public void criarRequisicao() {
-    requisicao = new ProdutoDto("Nome do produto", "Descrição do produto",
+    request = new ProdutoDto("Nome do produto", "Descrição do produto",
         BigDecimal.valueOf(35), "BEBIDA");
   }
 
-  @When("o sistema receber a requisição de cadastro")
+  @Quando("o sistema receber a requisição de cadastro")
   public void enviarRequisicao() {
-    resposta = given()
+    response = given()
       .contentType(MediaType.APPLICATION_JSON_VALUE)
       .when()
-      .body(requisicao)
+      .body(request)
       .post(url);
   }
 
-  @Then("deve retornar o produto cadastrado com o código")
+  @Entao("deve retornar o produto cadastrado com o código")
   public void confereResposta() throws Exception {
 
-    assertEquals(HttpStatus.CREATED.value(), resposta.getStatusCode());
+    assertEquals(HttpStatus.CREATED.value(), response.getStatusCode());
     
-    var data = getDadosResposta();
-    
-    assertEquals(true, ((Integer) data.get("codigo")) >= 1L);
-    assertEquals(requisicao.getNome(), data.get("nome"));
-    assertEquals(requisicao.getDescricao(), data.get("descricao"));
-    assertEquals(requisicao.getPreco(), BigDecimal.valueOf((Integer) data.get("preco")));
-    assertEquals(requisicao.getCategoria(), data.get("categoria"));
-  }
+    var responseBody = (new ObjectMapper()).readTree(response.getBody().asString());
 
-  // Métodos auxiliares
-  private Map<String, Object> getDadosResposta() throws Exception {
+    var codigo = responseBody.get("data").get("codigo").asLong();
+    assertEquals(17L, codigo);
     
-    ObjectMapper mapper = new ObjectMapper();
+    var nome = responseBody.get("data").get("nome").asText();
+    assertEquals(request.getNome(), nome);
     
-    Map<String, Object> responseMap = 
-        mapper.readValue(resposta.getBody().asString(),
-          new TypeReference<Map<String, Object>>() {});
+    var descricao = responseBody.get("data").get("descricao").asText();
+    assertEquals(request.getDescricao(), descricao);
     
-    return (Map<String, Object>) responseMap.get("data");
+    var preco = responseBody.get("data").get("preco").asText();
+    assertEquals(request.getPreco().toString(), preco);
+    
+    var categoria = responseBody.get("data").get("categoria").asText();
+    assertEquals(request.getCategoria().toString(), categoria);
   }
 }
