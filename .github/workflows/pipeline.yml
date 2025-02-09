@@ -32,6 +32,8 @@ jobs:
         env:
           H2_USERNAME: sa
           H2_PASSWORD: password
+          URL_SERV_PAGAMENTO: empty
+          URL_SERV_PRODUCAO: empty
         run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
       - name: Wait for application
