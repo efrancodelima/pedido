@@ -5,6 +5,7 @@ import br.com.fiap.soat.dto.service.request.CriarPagamentoDto;
 import br.com.fiap.soat.dto.service.response.PagamentoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,15 +19,19 @@ import org.springframework.web.client.RestTemplate;
 public class NotificarPagamentoService {
 
   private final RestTemplate restTemplate;
+  private final String baseUrl;
     
   @Autowired
-  private NotificarPagamentoService(RestTemplate restTemplate) {
+  private NotificarPagamentoService(RestTemplate restTemplate,
+      @Value("${pagamento.service.url}") String baseUrl) {
+    
     this.restTemplate = restTemplate;
+    this.baseUrl = baseUrl;
   }
   
   public void execute(CriarPagamentoDto requisicao) throws BadGatewayException {
     
-    String url = "http://localhost:8081/pagamento/novo/";
+    String url = baseUrl + "pagamento/criar/";
 
     try {
       restTemplate.exchange(

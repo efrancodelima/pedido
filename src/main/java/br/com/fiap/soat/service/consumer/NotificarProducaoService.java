@@ -5,6 +5,7 @@ import br.com.fiap.soat.dto.service.response.RegistroProducaoDto;
 import br.com.fiap.soat.exception.BadGatewayException;
 import br.com.fiap.soat.exception.messages.BadGatewayMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,15 +19,19 @@ import org.springframework.web.client.RestTemplate;
 public class NotificarProducaoService {
 
   private final RestTemplate restTemplate;
+  private final String baseUrl;
     
   @Autowired
-  private NotificarProducaoService(RestTemplate restTemplate) {
+  private NotificarProducaoService(RestTemplate restTemplate,
+      @Value("${producao.service.url}") String baseUrl) {
+    
     this.restTemplate = restTemplate;
+    this.baseUrl = baseUrl;
   }
   
   public RegistroProducaoDto execute(Long numeroPedido) throws BadGatewayException {
     
-    String url = "http://localhost:8082/producao/receber/" + numeroPedido;
+    String url = baseUrl + "producao/receber/" + numeroPedido;
 
     try {
       var response = restTemplate.exchange(
