@@ -74,7 +74,7 @@ jobs:
           DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
           DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
           DATASOURCE_DRIVER: ${{ secrets.DATASOURCE_DRIVER }}
-        run: docker build -t app-lanchonete -f Dockerfile .
+        run: docker build -t app-pedido -f Dockerfile .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
