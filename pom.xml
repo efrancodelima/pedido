@@ -6,7 +6,7 @@
 
     <groupId>br.com.fiap.soat</groupId>
     <artifactId>pedido-app</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <name>Microsserviço de pedido</name>
     <description>Tech Challenge Fase 4 - Software Architecture</description>
