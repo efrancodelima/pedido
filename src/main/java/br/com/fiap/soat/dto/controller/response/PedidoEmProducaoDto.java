@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PedidoEmProducaoDto {
 
-  private PedidoJpa cliente;
+  private PedidoJpa pedido;
 
   private String status;
 
