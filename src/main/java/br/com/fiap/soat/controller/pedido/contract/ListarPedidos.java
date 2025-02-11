@@ -39,10 +39,9 @@ public interface ListarPedidos {
 
     private Constantes() {}
 
-    public static final String DESCRICAO = "Lista os pedidos recebidos, em preparação e "
-        + "prontos.<br>Os pedidos mais antigos são exibidos primeiro e os mais novos depois.<br>"
-        + "A lista também é ordenada pelo status do pedido: pedidos prontos no topo da lista e "
-        + "recebidos no final.";
+    public static final String DESCRICAO = "Lista os pedidos nessa ordem: Pronto > Em Preparação "
+        + "> Recebido.<br>Pedidos mais antigos primeiro e mais novos depois."
+        + "<br>Pedidos finalizados não são listados.";
     
     public static final String CODE_OK = "200";
     public static final String DESC_OK = "Ok";
