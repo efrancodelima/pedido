@@ -146,9 +146,7 @@ Os outros microsserviços (pedido e produção) utilizam banco de dados relacion
 
 Os testes de unidade sozinhos já atingem cobertura de código superior a 80%, tanto na cobertura de linhas de código quanto na cobertura de ramificações do código.
 
-Criamos 3 testes BDD no microsserviço de pedido, 2 no de pagamento e 2 no de produção (número superior ao mínimo, que era 1 em cada).
-
-Criamos um a mais no de pedido, pois é o microsserviço que contém mais funcionalidades, então pareceu razoável que ele tivesse mais testes também.
+Além deles, criamos 3 testes BDD no microsserviço de pedido, 2 no de pagamento e 2 no de produção (número superior ao mínimo, que era 1 em cada). Criamos um a mais no de pedido, pois é o microsserviço que contém mais funcionalidades, então pareceu razoável que ele tivesse mais testes também.
 
 ### 4.4. Pipeline
 
@@ -175,9 +173,9 @@ O script confere e imprime os dados, item por item, no log da pipeline:
 - maintainability analysis (code smells and rating);
 - quality gate (status).
 
-O restante da pipeline, não mudou muita coisa em relação à fase anterior. Só o build da imagem, que teve o arquivo dockerfile modificado um pouco: antes os dados de conexão com o banco eram definidos no build, passados como variáveis de ambiente; agora essa parte foi removida e os as variáveis são definidas nas task definitions do ECS, passadas como variáveis do container.
+O restante da pipeline não mudou muita coisa. Só o build da imagem, que teve o arquivo dockerfile modificado um pouco: antes os dados de conexão com o banco eram definidos no build, passados como variáveis de ambiente; agora essa parte foi removida e os as variáveis são definidas nas task definitions do ECS.
 
-Além dos dados de conexão com o banco, as URLs dos microsserviços também são variáveis de ambiente definidas após o build. Isso dá mais flexibilidade ao código, já que não precisamos realizar um novo build caso alguma dessas variáveis mude.
+Resumindo: os dados continuam sendo passados como variáveis de ambiente, só que agora o valor das variáveis é definido após o build, não durante. Isso dá mais flexibilidade ao código, já que não precisamos realizar um novo build caso alguma dessas variáveis mude. Além dos dados de conexão com o banco, as URLs dos microsserviços também são variáveis de ambiente definidas após o build. 
 
 ## 5. Instrução para rodar a aplicação
 
