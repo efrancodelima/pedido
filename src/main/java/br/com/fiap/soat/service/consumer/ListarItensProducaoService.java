@@ -25,7 +25,7 @@ public class ListarItensProducaoService {
     
   @Autowired
   private ListarItensProducaoService(RestTemplate restTemplate,
-      @Value("${pagamento.service.url}") String baseUrl) {
+      @Value("${producao.service.url}") String baseUrl) {
     
     this.restTemplate = restTemplate;
     this.baseUrl = baseUrl;
