@@ -14,20 +14,20 @@ Link do vídeo demonstrando o projeto em execução:
 
 # Índice
 
-- [Objetivos](#objetivos)
-- [Requisitos](#requisitos)
-  - [API Web](#api-web)
-  - [Arquitetura](#arquitetura)
-  - [Pipeline](#pipeline)
-- [Aplicação](#aplicação)
-  - [Instrução para rodar a aplicação](#instrução-para-rodar-a-aplicação)
-- [Banco de dados](#banco-de-dados)
-  - [Escolha e justificativa](#escolha-e-justificativa)
-  - [Documentação](#documentação)
-    - [Modelo conceitual](#modelo-conceitual)
-    - [Modelo lógico](#modelo-lógico)
-- [Infra kubernetes](#infra-kubernetes)
-- [Autenticação](#Autenticação)
+- [Objetivos](#1-objetivos)
+- [Requisitos](#2-requisitos)
+  - [Arquitetura](#21-arquitetura)
+  - [Banco de dados](#22-banco-de-dados)
+  - [Testes](#23-testes)
+  - [Pipeline](#24-pipeline)
+  - [API Web](#25-api-web)
+- [Evidências dos testes](#3-evidências-dos-testes)
+- [Comentários sobre o projeto](#4-comentários-sobre-o-projeto)
+  - [Microsserviços](#41-microsserviços)
+  - [Banco de dados](#42-banco-de-dados)
+  - [Testes](#43-testes)
+  - [Pipeline](#44-pipeline)
+- [Instrução para rodar a aplicação](#5-instrução-para-rodar-a-aplicação)
 
 ## 1. Objetivos
 
@@ -112,7 +112,7 @@ Links:
 
 ## 4. Comentários sobre o projeto
 
-O projeto atende a todos os requisitos mencionados nesse documento.
+Todos os requisitos mencionados nesse documento são atendidos pelo projeto, mas deixaremos aqui alguns comentários sobre as partes que julgamos mais relevantes.
 
 ### 4.1. Microsserviços
 
