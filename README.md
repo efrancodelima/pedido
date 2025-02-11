@@ -132,7 +132,7 @@ No divisão por domínios, poderíamos ter um microsserviço só para clientes, 
 
 Sendo assim, o microsserviço de pedidos ainda concentra a parte das funcionalidades da aplicação anterior, exceto no que diz respeito ao pagamento e à esteira de produção (o histórico dos pedidos).
 
-## 4.2. Banco de dados
+### 4.2. Banco de dados
 
 O microsserviço de pagamento utiliza o banco de dados MongoDB, que é orientado a documentos.
 
@@ -142,7 +142,7 @@ Nessa situação, o fato do MogoDB ter uma estrutura flexível em vez de um esqu
 
 Os outros microsserviços (pedido e produção) utilizam banco de dados relacionais.
 
-## 4.4. Testes
+### 4.4. Testes
 
 Os testes de unidade sozinhos já atingem cobertura de código superior a 80%, tanto na cobertura de linhas de código quanto na cobertura de ramificações do código.
 
@@ -150,7 +150,7 @@ Criamos 3 testes BDD no microsserviço de pedido, 2 no de pagamento e 2 no de pr
 
 Criamos um a mais no de pedido, pois é o microsserviço que contém mais funcionalidades, então pareceu razoável que ele tivesse mais testes também.
 
-## 4.4. Pipeline
+### 4.4. Pipeline
 
 As mudanças em relação à fase anterior foram os testes e o Sonar.
 
@@ -179,7 +179,7 @@ O restante da pipeline, não mudou muita coisa em relação à fase anterior. S�
 
 Além dos dados de conexão com o banco, as URLs dos microsserviços também são variáveis de ambiente definidas após o build. Isso dá mais flexibilidade ao código, já que não precisamos realizar um novo build caso alguma dessas variáveis mude.
 
-### 5. Instrução para rodar a aplicação
+## 5. Instrução para rodar a aplicação
 
 Primeiro, é necessário verificar se os bancos de dados estão ativos e, depois, realizar o deploy dos microsserviços.
 
