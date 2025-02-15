@@ -10,7 +10,8 @@ Link do projeto no GitHub:
 
 Link do vídeo demonstrando o projeto em execução:
 
-- Pendente (ainda não gravei)
+- https://youtu.be/C-mozV9B57o (funcionamento da aplicação e processo de deploy)
+- https://youtu.be/ussy8n-Cozs (atualizações efetuadas na arquitetura)
 
 # Índice
 
@@ -106,8 +107,8 @@ Abaixo segue a captura da tela do Sonar Cloud e também deixaremos os links para
 ![Tela do Sonar Cloud](assets/tela-sonar.png)
 
 Links:
-- Microsserviço de PEDIDO: https://github.com/efrancodelima/pedido/actions/runs/13231045412/job/36928228211
-- Microsserviço de PAGAMENTO: https://github.com/efrancodelima/pagamento/actions/runs/13229967432/job/36925715722
+- Microsserviço de PEDIDO: https://github.com/efrancodelima/pedido/actions/runs/13273137930/job/37057026528
+- Microsserviço de PAGAMENTO: https://github.com/efrancodelima/pagamento/actions/runs/13272650996/job/37055483951
 - Microsserviço de PRODUÇÃO: https://github.com/efrancodelima/producao/actions/runs/13231048854/job/36928236519
 
 ## 4. Comentários sobre o projeto
